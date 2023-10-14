@@ -4,7 +4,10 @@
 		<div class="flex items-center justify-center">
 			<button @click="addAbilityToTable" class="my-3 bg-indigo-500 text-white px-4 py-2 rounded-md">Guess</button>
 			<div class="ml-4 flex items-center justify-center space-x-1">
-				<p class="text-slate-200">Yesterdays' ability: <p class="text-green-400 text-xl">{{ pretty(yesterdaySolution) }}</p></p>
+				<div class="flex flex-col">
+					<p class="text-slate-200">Yesterdays' ability:</p>
+					<span class="text-green-400 text-xl">{{ pretty(yesterdaySolution) }}</span>
+				</div>
 				<img :src="`${abilities[yesterdaySolution][Image]}`" width="30" />
 			</div>
 		</div>
@@ -96,24 +99,20 @@
 	};
 
 	const addAbilityToTable = () => {
-		if (abilities.value[selectedAbility.value] == solution) {
-			const newAbility = { name: selectedAbility.value };
-			for (const property of properties) {
-				newAbility[property] = abilities.value[selectedAbility.value][property];
-			}
-			tableData.value.push(newAbility);
-			selectedAbility.value = "";
-			winning.value = true;
-			setTimeout(() => {
-				winning.value = false;
-			}, 3000);
-		}
 		if (selectedAbility.value && abilities.value[selectedAbility.value]) {
+
+			if (abilities.value[selectedAbility.value] == solution) {
+				winning.value = true;
+				setTimeout(() => {
+					winning.value = false;
+				}, 3000);
+			}
+
 			const newAbility = { name: selectedAbility.value };
 			for (const property of properties) {
 				newAbility[property] = abilities.value[selectedAbility.value][property];
 			}
-			tableData.value.push(newAbility);
+			tableData.value.unshift(newAbility);
 			selectedAbility.value = "";
 		}
 	};

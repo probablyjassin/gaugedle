@@ -7,11 +7,10 @@
             <div v-if="expanded" class="overflow-hidden w-auto transition-all duration-300">
                 <p>Well well welt</p>
                 <p>I caught the sound of a man named Zy0nix trying to roast the design of the website I made</p>
-				<p>Apart from the fact that half the chat said "this is art" or "its peak"</p>
-                <p>So what to do other than spending a full night (I'm writing this at 2am) to create a incredible beautiful design for Gaugedle overnight.</p>
+                <p>So I decided to make it look better</p>
                 <p>I even made an animation for when you win the game. So thanks for the encouragement om</p>
                 <p>~ probably jassin</p>
-                <p class="mt-3">Here is the original version, from which I will migrate the missing features over time: 
+                <p class="mt-3">Here is the original version, (if you liked it more you can still use it) from which I will migrate the missing features over time: 
 					<a href="https://gaugedle.jassin.aouani.de/old" class="text-blue-500 underline">click here</a>
 				</p>
 				<div class="mt-3">

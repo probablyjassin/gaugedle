@@ -3,7 +3,7 @@
 		<link href="https://fonts.cdnfonts.com/css/youtube-sans" rel="stylesheet" />
 		<div>
 			<Heading />
-			<Zy0x />
+			<Info />
 			<Choice />
 		</div>
 	</div>
