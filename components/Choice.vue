@@ -15,17 +15,19 @@
 
 	<div class="custom-scrollable-selection flex justify-center">
 		<input
+			v-model="searchTerm"
 			:value="searchTerm"
-  			@input="searchTerm = $event.target.value"
+			@input="searchTerm = $event.target.value"
 			@focus="abilitiesExpand = true"
-			
 			placeholder="Guess an ability"
-			class="w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-		/>
-
-		<div v-show="abilitiesExpand" class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
+			class="w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+		<div
+			v-show="abilitiesExpand"
+			class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
 			<div class="options">
-				<div v-for="(ability, key) in filteredOptions" :key="key" class="option flex items-center m-4" @click="addAbilityToTable(key)">
+				<div v-for="(ability, key, index) in filteredOptions" :key="key" 
+					class="selected-option option flex items-center m-4 focus:bg-slate-300 hover:bg-slate-300" 
+					@click="addAbilityToTable(key)">
 					<img :src="ability.Image" alt="Ability Icon" class="icon w-12 h-12" />
 					<span class="label ml-4">{{ key }}</span>
 				</div>
@@ -68,6 +70,20 @@
 	const abilitiesExpand = ref(false);
 
 	const searchTerm = ref("");
+	const selectedIndex = ref(-1);
+
+	function navigate($event) {
+		/* if (['Tab', 'ArrowDown'].includes($event.key)) {
+			$event.preventDefault();
+			selectedIndex.value = 2
+		} */
+		if (selectedIndex < selectedIndex - 1) {
+			selectedIndex++;
+        }
+        if (selectedIndex > 0) {
+			selectedIndex--;
+        }
+	}
 
 	const filteredOptions = computed(() => {
 		const searchQuery = searchTerm.value.toLowerCase();
@@ -119,6 +135,7 @@
 	const addAbilityToTable = (guess) => {
 		if (abilities.value[guess]) {
 			abilitiesExpand.value = false;
+			searchTerm.value = ''
 			const guessObj = abilities.value[guess];
 
 			if (guessObj == solution) {
