@@ -1,8 +1,6 @@
 <template>
 	<Confetti v-if="winning" />
 	<div class="my-3 text-center">
-		<div class="flex items-center justify-center">
-			<button @click="addAbilityToTable" class="my-3 bg-indigo-500 text-white px-4 py-2 rounded-md">Guess</button>
 			<div class="ml-4 flex items-center justify-center space-x-1">
 				<div class="flex flex-col">
 					<p class="text-slate-200">Yesterdays' ability:</p>
@@ -10,25 +8,28 @@
 				</div>
 				<img :src="`${abilities[yesterdaySolution][Image]}`" width="30" />
 			</div>
-		</div>
 		<div v-if="winning" class="mt-8 p-2 bg-white">
 			<p class="text-center text-6xl font-bold tracking-tighter text-green-600">You found the correct ability! Congratulations!</p>
 		</div>
 	</div>
 
-	<input
-		placeholder="Select an ability"
-		type="text"
-		list="wordList"
-		v-model="selectedAbility"
-		class="w-screen text-center mx-auto py-3 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-		@keyup.enter="addAbilityToTable" />
+	<div class="custom-scrollable-selection flex justify-center">
+		<button
+			@click="abilitiesExpand = !abilitiesExpand"
+			class="w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+			Guess an ability
+		</button>
+		
+		<div v-show="abilitiesExpand" class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
+			<div class="options">
+				<div v-for="(ability, key) in abilities" :key="key" class="option flex items-center m-4" @click="addAbilityToTable(key)">
+					<img :src="ability.Image" alt="Ability Icon" class="icon w-12 h-12" />
+					<span class="label ml-4">{{ key }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<datalist id="wordList">
-		<option v-for="(ability, key) in abilities" :key="key" :value="key">
-			{{ key.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
-		</option>
-	</datalist>
 	<div class="overflow-x-auto">
 		<table class="w-screen align-middle bg-slate-50">
 			<thead>
@@ -58,6 +59,8 @@
 </template>
 
 <script setup>
+	const abilitiesExpand = ref(false);
+
 	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
 	const { abilities } = useAbilities();
 	const selectedAbility = ref("");
@@ -98,22 +101,24 @@
 		}
 	};
 
-	const addAbilityToTable = () => {
-		if (selectedAbility.value && abilities.value[selectedAbility.value]) {
+	const addAbilityToTable = (guess) => {
+		if (abilities.value[guess]) {
 
-			if (abilities.value[selectedAbility.value] == solution) {
+			abilitiesExpand.value = false
+			const guessObj = abilities.value[guess];
+
+			if (guessObj == solution) {
 				winning.value = true;
 				setTimeout(() => {
 					winning.value = false;
 				}, 3000);
 			}
 
-			const newAbility = { name: selectedAbility.value };
+			const newAbility = { name: guess };
 			for (const property of properties) {
-				newAbility[property] = abilities.value[selectedAbility.value][property];
+				newAbility[property] = abilities.value[guess][property];
 			}
 			tableData.value.unshift(newAbility);
-			selectedAbility.value = "";
 		}
 	};
 </script>
