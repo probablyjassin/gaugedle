@@ -18,7 +18,7 @@
 			:value="searchTerm"
   			@input="searchTerm = $event.target.value"
 			@focus="abilitiesExpand = true"
-  			@blur="abilitiesExpand = false"
+			
 			placeholder="Guess an ability"
 			class="w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 		/>
@@ -117,7 +117,7 @@
 	};
 
 	const addAbilityToTable = (guess) => {
-		if (abilities.abilitiesExpand[guess]) {
+		if (abilities.value[guess]) {
 			abilitiesExpand.value = false;
 			const guessObj = abilities.value[guess];
 
