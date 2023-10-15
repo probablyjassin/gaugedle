@@ -1,28 +1,31 @@
 <template>
 	<Confetti v-if="winning" />
 	<div class="my-3 text-center">
-			<div class="ml-4 flex items-center justify-center space-x-1">
-				<div class="flex flex-col">
-					<p class="text-slate-200">Yesterdays' ability:</p>
-					<span class="text-green-400 text-xl">{{ pretty(yesterdaySolution) }}</span>
-				</div>
-				<img :src="`${abilities[yesterdaySolution][Image]}`" width="30" />
+		<div class="ml-4 flex items-center justify-center space-x-1">
+			<div class="flex flex-col">
+				<p class="text-slate-200">Yesterdays' ability:</p>
+				<span class="text-green-400 text-xl">{{ pretty(yesterdaySolution) }}</span>
 			</div>
+			<img :src="`${abilities[yesterdaySolution][Image]}`" width="30" />
+		</div>
 		<div v-if="winning" class="mt-8 p-2 bg-white">
 			<p class="text-center text-6xl font-bold tracking-tighter text-green-600">You found the correct ability! Congratulations!</p>
 		</div>
 	</div>
 
 	<div class="custom-scrollable-selection flex justify-center">
-		<button
-			@click="abilitiesExpand = !abilitiesExpand"
-			class="w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-			Guess an ability
-		</button>
-		
+		<input
+			:value="searchTerm"
+  			@input="searchTerm = $event.target.value"
+			@focus="abilitiesExpand = true"
+  			@blur="abilitiesExpand = false"
+			placeholder="Guess an ability"
+			class="w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+		/>
+
 		<div v-show="abilitiesExpand" class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
 			<div class="options">
-				<div v-for="(ability, key) in abilities" :key="key" class="option flex items-center m-4" @click="addAbilityToTable(key)">
+				<div v-for="(ability, key) in filteredOptions" :key="key" class="option flex items-center m-4" @click="addAbilityToTable(key)">
 					<img :src="ability.Image" alt="Ability Icon" class="icon w-12 h-12" />
 					<span class="label ml-4">{{ key }}</span>
 				</div>
@@ -59,11 +62,23 @@
 </template>
 
 <script setup>
+	const { abilities } = useAbilities();
+	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
+
 	const abilitiesExpand = ref(false);
 
-	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
-	const { abilities } = useAbilities();
-	const selectedAbility = ref("");
+	const searchTerm = ref("");
+
+	const filteredOptions = computed(() => {
+		const searchQuery = searchTerm.value.toLowerCase();
+		if (searchQuery) {
+			const results = Object.entries(abilities.value).filter(([key, value]) => key.toLowerCase().includes(searchQuery));
+			return Object.fromEntries(results);
+		} else {
+			return abilities.value;
+		}
+	});
+
 	let properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];
 	const tableData = ref([]);
 	const solution = abilities.value[generateDailyAbility(abilities.value)];
@@ -102,9 +117,8 @@
 	};
 
 	const addAbilityToTable = (guess) => {
-		if (abilities.value[guess]) {
-
-			abilitiesExpand.value = false
+		if (abilities.abilitiesExpand[guess]) {
+			abilitiesExpand.value = false;
 			const guessObj = abilities.value[guess];
 
 			if (guessObj == solution) {
