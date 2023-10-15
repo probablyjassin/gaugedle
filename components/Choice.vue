@@ -69,29 +69,12 @@
 
 <script setup>
 	const { abilities } = useAbilities();
+	const { navigate } = useNavigation()
 	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
 
 	const abilitiesExpand = ref(false);
 
 	const searchTerm = ref("");
-
-	function navigate($event) {
-		let current = parseInt($event.target.getAttribute("tabindex"));
-		if ($event.key == "ArrowDown") {
-			$event.preventDefault();
-			if (document.querySelector(`[tabindex="${current + 1}"]`)) {
-				document.querySelector(`[tabindex="${current + 1}"]`).focus();
-			} else {
-				document.querySelector('[tabindex="1"]').focus();
-			}
-		}
-		if ($event.key == "ArrowUp") {
-			$event.preventDefault();
-			if (document.querySelector(`[tabindex="${current - 1}"]`)) {
-				document.querySelector(`[tabindex="${current - 1}"]`).focus();
-			}
-		}
-	}
 
 	const filteredOptions = computed(() => {
 		const searchQuery = searchTerm.value.toLowerCase();
@@ -162,7 +145,7 @@
 	};
 
 	function unblur($event) {
-		if (!$event.target.classList.contains('input' || 'custom-scrollable-selection')) {
+		if (!$event.target.classList.contains("input" || "custom-scrollable-selection")) {
 			abilitiesExpand.value = false;
 		}
 	}

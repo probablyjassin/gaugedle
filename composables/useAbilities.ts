@@ -835,7 +835,7 @@ export function useAbilities() {
       "Blunt": "No"
     },
     "LynetteBurst": {
-      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cf/Talent_Magic_Trick_Astonishing_Shift.png/revision/latest?cb=20230816021912",
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cf/Talent_Magic_Trick_Astonishing_Shift.png",
       "CD": "18s",
       "ICD": "Standard",
       "Gauge": "1u",
