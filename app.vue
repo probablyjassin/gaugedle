@@ -26,5 +26,6 @@
 		margin-top: 0;
 		height: 100vh;
 		background-image: url("~/assets/images/background2.webp");
+		background-size: cover;
 	}
 </style>
