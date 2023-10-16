@@ -14,7 +14,7 @@
 			</div>
 		</div>
 
-		<div class="custom-scrollable-selection flex justify-center">
+		<div class="custom-scrollable-selection flex justify-center mx-0 md:mx-28">
 			<input
 				tabindex="1"
 				v-model="searchTerm"
@@ -37,12 +37,12 @@
 			</div>
 		</div>
 
-		<div class="overflow-x-auto">
-			<table class="w-screen align-middle bg-slate-50">
+		<div class="overflow-x-auto  mx-0 md:mx-28">
+			<table class="w-full align-middle bg-slate-50">
 				<thead>
 					<tr>
-						<th class="bg-slate-400 border border-black">Ability</th>
-						<th v-for="(property, index) in properties" :key="index" class="border-black border p-2 bg-slate-400">
+						<th class="bg-slate-400 border border-black md:text-base text-xs">Ability</th>
+						<th v-for="(property, index) in properties" :key="index" class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-xs">
 							{{ property }}
 						</th>
 					</tr>
