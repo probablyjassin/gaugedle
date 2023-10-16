@@ -1,10 +1,12 @@
 <template>
 	<div class="app">
-		<link href="https://fonts.cdnfonts.com/css/youtube-sans" rel="stylesheet" />
+		<title>Gaugedle</title>
 		<div>
-			<Heading />
-			<Info />
-			<Choice />
+			<TopBar/>
+			<Heading/>
+			<Info/>
+			<Choice/>
+			<Footing/>
 		</div>
 	</div>
 </template>

@@ -41,20 +41,19 @@
 			<table class="w-full align-middle bg-slate-50">
 				<thead>
 					<tr>
-						<th class="bg-slate-400 border border-black md:text-base text-xs">Ability</th>
-						<th v-for="(property, index) in properties" :key="index" class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-xs">
+						<th v-for="(property, index) in ['Ability', ...properties]" :key="index" class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
 							{{ property }}
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="(item, itemIndex) in tableData" :key="itemIndex">
-						<td class="text-center p-2 border border-black">
+						<td class="text-center p-2 border border-black md:text-base text-[8px]">
 							<span><img width="50" class="mx-auto" :src="abilities[item.name]['Image']" /></span
 							>{{ item.name.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
 						</td>
 						<td
-							class="text-center p-2 border border-black"
+							class="text-center p-2 border border-black md:text-base text-xs"
 							v-for="(property, propIndex) in properties"
 							:key="propIndex"
 							:class="getCellClass(item.name, property)">
