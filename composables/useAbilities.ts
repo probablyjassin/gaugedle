@@ -454,7 +454,7 @@ export function useAbilities() {
       "Element": "Electro",
       "Blunt": "Yes, No"
     },
-    "FreminetSkill": {
+    /* "FreminetSkill": {
       "Image": "",
       "CD": "",
       "ICD": "",
@@ -473,7 +473,7 @@ export function useAbilities() {
       "Shape": "",
       "Element": "Cryo",
       "Blunt": ""
-    },
+    }, */
     "GanyuSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Talent_Trail_of_the_Qilin.png",
       "CD": "10s",
