@@ -32,5 +32,9 @@
 
 </script>
 
-<style scoped>
+<style>
+ul {
+	list-style-type: circle;
+}
+
 </style>
