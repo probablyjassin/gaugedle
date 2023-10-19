@@ -7,7 +7,7 @@
 					<p class="text-slate-200">Yesterdays' ability:</p>
 					<span class="text-green-400 text-xl">{{ pretty(yesterdaySolution) }}</span>
 				</div>
-				<img :src="`${abilities[yesterdaySolution]['Image']}`" width="30" />
+				<client-only><img :src="`${abilities[yesterdaySolution]['Image']}`" width="30" /></client-only>
 			</div>
 			<div v-if="winning" class="mt-8 p-2 bg-white">
 				<p class="text-center text-6xl font-bold tracking-tighter text-green-600">You found the correct ability! Congratulations!</p>

@@ -6,7 +6,7 @@
 			</button>
 			<div v-if="expanded" class="overflow-hidden w-auto transition-all duration-300">
 				<main>
-					<ContentDoc :path="$route.path" />
+					<slot></slot>
 				</main>
 			</div>
 		</div>
@@ -31,10 +31,3 @@
 <script setup>
 
 </script>
-
-<style>
-ul {
-	list-style-type: circle;
-}
-
-</style>
