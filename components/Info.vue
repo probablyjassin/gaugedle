@@ -6,7 +6,7 @@
 			</button>
 			<div v-if="expanded" class="overflow-hidden w-auto transition-all duration-300">
 				<main>
-					<slot></slot>
+					<ContentDoc/>
 				</main>
 			</div>
 		</div>

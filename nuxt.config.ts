@@ -2,5 +2,8 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content'],
-  ssr: true,
+  ssr: false,
+  routeRules: {
+    '/': { prerender: true },
+}
 })
