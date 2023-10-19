@@ -935,6 +935,26 @@ export function useAbilities() {
       "Element": "Dendro",
       "Blunt": "No"
     },
+    "NeuvilletteSkill": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0e/Talent_O_Tears%2C_I_Shall_Repay.png",
+      "CD": "12s",
+      "ICD": "None",
+      "Gauge": "0u, 1u",
+      "Diameter/Width": "9m, 12m",
+      "Shape": "Cylinder",
+      "Element": "Hydro",
+      "Blunt": "No"
+    },
+    "NeuvilletteBurst": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Talent_O_Tides%2C_I_Have_Returned.png",
+      "CD": "18s",
+      "ICD": "Standard",
+      "Gauge": "1u",
+      "Diameter/Width": "10m, 16m",
+      "Shape": "Cylinder",
+      "Element": "Hydro",
+      "Blunt": "No"
+    },
     "NilouSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Talent_Dance_of_Haftkarsvar.png",
       "CD": "18s",
