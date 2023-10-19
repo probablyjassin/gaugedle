@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-	const { abilities } = useAbilities();
+	const { abilities, excluded } = useAbilities();
 	const { navigate } = useNavigation()
 	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
 
@@ -87,8 +87,16 @@
 
 	let properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];
 	const tableData = ref([]);
-	const solution = abilities.value[generateDailyAbility(abilities.value)];
-	const yesterdaySolution = computed(() => yesterdayAbility(abilities.value));
+	const solution = abilities.value[generateDailyAbility(keineAhnung(abilities.value, excluded))];
+	const yesterdaySolution = computed(() => yesterdayAbility(keineAhnung(abilities.value, excluded)));
+
+	function keineAhnung(toFilter, excluded) {
+		let newObj = {...toFilter}
+		excluded.forEach(ability => {
+			delete newObj[ability]
+		});
+		return newObj
+	}
 
 	const winning = ref(false);
 	function pretty(input) {

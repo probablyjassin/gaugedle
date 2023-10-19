@@ -1,5 +1,5 @@
 const abilities = ref({});
-let excluded
+const excluded = ['FOCALORSBurst', 'FOCALORSSkill']
 
 export function useAbilities() {
 
@@ -1729,5 +1729,6 @@ export function useAbilities() {
 
   return {
     abilities,
+    excluded,
   };
 }
