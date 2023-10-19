@@ -1,7 +1,17 @@
 <template>
 	<div class="confetti-container">
 		<div class="confetti">
-			<i style="--speed: 10; --bg: yellow" class="square"></i>
+			<!-- <div v-for="index in 100">
+				<i 
+				:style="`
+				--speed: ${40};
+				 --bg: ${['yellow', 'white', 'green', 'blue', 'red', 'pink',][Math.floor(Math.random() * 6)]}`"
+				 :class="
+				 ['square', 'pentagram', 'rectangle', 'hexagram', 'dodecagram', 'wavy-line',][Math.floor(Math.random() * 6)]
+				 "></i>
+			</div> -->
+			<!-- Math.floor(Math.random() * (50 - 15 + 1)) + 15 --> 
+				<i style="--speed: 10; --bg: yellow" class="square"></i>
 			<i style="--speed: 18; --bg: white" class="pentagram"></i>
 			<i style="--speed: 29; --bg: green" class="rectangle"></i>
 			<i style="--speed: 17; --bg: blue" class="hexagram"></i>
