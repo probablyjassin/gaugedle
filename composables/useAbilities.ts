@@ -918,7 +918,7 @@ export function useAbilities() {
     "NahidaSkillHold": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/7/72/Talent_All_Schemes_to_Know.png",
       "CD": "6s",
-      "ICD": "Special",
+      "ICD": "Special, None",
       "Gauge": "1.5u, 1u",
       "Diameter/Width": "Big",
       "Shape": "Sphere",
