@@ -1445,6 +1445,26 @@ export function useAbilities() {
       "Element": "Anemo",
       "Blunt": "No"
     },
+    "WriothesleySkill": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d7/Talent_Icefang_Rush.png",
+      "CD": "16s",
+      "ICD": "None",
+      "Gauge": "None",
+      "Diameter/Width": "None",
+      "Shape": "None",
+      "Element": "Cryo",
+      "Blunt": "No"
+    },
+    "WriothesleyBurst": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/8/88/Talent_Darkgold_Wolfbite.png",
+      "CD": "15s",
+      "ICD": "None, Standard",
+      "Gauge": "0u, 1u",
+      "Diameter/Width": "5m, 8m, 10, 16m",
+      "Shape": "Box",
+      "Element": "Cryo",
+      "Blunt": "No"
+    },
     "XianglingSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Talent_Guoba_Attack.png",
       "CD": "12s",
