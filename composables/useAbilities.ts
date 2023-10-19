@@ -1,4 +1,5 @@
 const abilities = ref({});
+let excluded
 
 export function useAbilities() {
 
@@ -454,26 +455,26 @@ export function useAbilities() {
       "Element": "Electro",
       "Blunt": "Yes, No"
     },
-    /* "FreminetSkill": {
-      "Image": "",
-      "CD": "",
-      "ICD": "",
-      "Gauge": "",
-      "Diameter/Width": "",
-      "Shape": "",
+    "FreminetSkill": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5d/Talent_Pressurized_Floe.png",
+      "CD": "10s",
+      "ICD": "Standard",
+      "Gauge": "0u, 1u",
+      "Diameter/Width": "3m, 5m, 7m",
+      "Shape": "Cylinder Box",
       "Element": "Cryo",
-      "Blunt": ""
+      "Blunt": "Yes, No"
     },
     "FreminetBurst": {
-      "Image": "",
-      "CD": "",
-      "ICD": "",
-      "Gauge": "",
-      "Diameter/Width": "",
-      "Shape": "",
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9e/Talent_Shadowhunter%27s_Ambush.png",
+      "CD": "15s",
+      "ICD": "None",
+      "Gauge": "1u",
+      "Diameter/Width": "10m",
+      "Shape": "Cylinder",
       "Element": "Cryo",
-      "Blunt": ""
-    }, */
+      "Blunt": "Yes"
+    },
     "GanyuSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Talent_Trail_of_the_Qilin.png",
       "CD": "10s",
