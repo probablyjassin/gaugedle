@@ -5,9 +5,7 @@
 				{{ expanded ? "Close" : "read me" }}
 			</button>
 			<div v-if="expanded" class="overflow-hidden w-auto transition-all duration-300">
-				<main>
-					<ContentDoc/>
-				</main>
+				<ContentDoc path="/"/>
 			</div>
 		</div>
 	</div>
