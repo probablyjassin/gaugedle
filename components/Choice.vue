@@ -1,5 +1,5 @@
 <template>
-	<div class="pb-80" @click="unblur($event)">
+	<div>
 		<Confetti v-if="winning" />
 		<div v-if="winning" class="mt-8 p-2 bg-white">
 			<p class="text-center text-6xl font-bold tracking-tighter text-green-600">You found the correct ability! Congratulations!</p>
@@ -28,11 +28,14 @@
 			</div>
 		</div>
 
-		<div class="overflow-x-auto  mx-0 md:mx-28">
+		<div class="overflow-x-auto mx-0 md:mx-28">
 			<table class="w-full align-middle bg-slate-50">
 				<thead>
 					<tr>
-						<th v-for="(property, index) in ['Ability', ...properties]" :key="index" class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
+						<th
+							v-for="(property, index) in ['Ability', ...properties]"
+							:key="index"
+							class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
 							{{ property }}
 						</th>
 					</tr>
@@ -58,10 +61,10 @@
 </template>
 
 <script setup>
-	const { abilities, excluded } = useAbilities();
-	const { navigate } = useNavigation()
+	const { abilities } = useAbilities();
+	const { navigate } = useNavigation();
 
-	const abilitiesExpand = ref(false);
+	const abilitiesExpand = useState('expanded')
 
 	const searchTerm = ref("");
 
@@ -76,8 +79,8 @@
 	});
 
 	let properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];
-	const tableData = useState('table');
-	const solution = useState('solution')
+	const tableData = useState("table");
+	const solution = useState("solution");
 
 	const winning = ref(false);
 	function pretty(input) {
@@ -112,14 +115,12 @@
 
 	const addAbilityToTable = (guess) => {
 		if (abilities.value[guess]) {
-
 			abilitiesExpand.value = false;
 			searchTerm.value = "";
 
 			const guessObj = abilities.value[guess];
 
 			if (JSON.stringify(guessObj) === JSON.stringify(solution.value)) {
-				
 				winning.value = true;
 				setTimeout(() => {
 					winning.value = false;
@@ -133,10 +134,4 @@
 			tableData.value.unshift(newAbility);
 		}
 	};
-
-	function unblur($event) {
-		if (!$event.target.classList.contains("input" || "custom-scrollable-selection")) {
-			abilitiesExpand.value = false;
-		}
-	}
 </script>

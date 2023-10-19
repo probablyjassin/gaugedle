@@ -1,15 +1,15 @@
 <template>
-	<div class="app">
+	<div class="app" @click="clickAway($event)">
 		<title>Gaugedle</title>
 		<div>
 			<NuxtLayout>
-				<NuxtPage/>
+				<NuxtPage />
 			</NuxtLayout>
 		</div>
 	</div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 	useHead({
 		title: "The Genshin Gaugedle",
 		meta: [
@@ -19,6 +19,13 @@
 			},
 		],
 	});
+
+	function clickAway($event) {
+		const expanded = useState('expanded')
+		if (!Object.values($event.target.classList).some(value => ['input', 'options', 'label'].includes(value))) {
+			expanded.value = false
+		}
+	}
 </script>
 
 <style scoped>
