@@ -1,17 +1,8 @@
 <template>
 	<div class="pb-80" @click="unblur($event)">
 		<Confetti v-if="winning" />
-		<div class="my-3 text-center">
-			<div class="ml-4 flex items-center justify-center space-x-1">
-				<div class="flex flex-col">
-					<p class="text-slate-200">Yesterdays' ability:</p>
-					<span class="text-green-400 text-xl">{{ pretty(yesterdaySolution) }}</span>
-				</div>
-				<client-only><img :src="`${abilities[yesterdaySolution]['Image']}`" width="30" /></client-only>
-			</div>
-			<div v-if="winning" class="mt-8 p-2 bg-white">
-				<p class="text-center text-6xl font-bold tracking-tighter text-green-600">You found the correct ability! Congratulations!</p>
-			</div>
+		<div v-if="winning" class="mt-8 p-2 bg-white">
+			<p class="text-center text-6xl font-bold tracking-tighter text-green-600">You found the correct ability! Congratulations!</p>
 		</div>
 
 		<div class="custom-scrollable-selection flex justify-center mx-0 md:mx-28">
@@ -30,7 +21,7 @@
 					<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="addAbilityToTable(key)">
 						<div class="flex focus:bg-slate-300 w-full" @keydown="navigate($event)" @keydown.enter.prevent="addAbilityToTable(key)" :tabindex="index + 2">
 							<img :src="ability.Image" alt="Ability Icon" class="icon w-12 h-12" />
-							<span class="label ml-4">{{ key }}</span>
+							<span class="label ml-4">{{ pretty(key) }}</span>
 						</div>
 					</div>
 				</div>
@@ -69,7 +60,6 @@
 <script setup>
 	const { abilities, excluded } = useAbilities();
 	const { navigate } = useNavigation()
-	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
 
 	const abilitiesExpand = ref(false);
 
@@ -86,17 +76,8 @@
 	});
 
 	let properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];
-	const tableData = ref([]);
-	const solution = abilities.value[generateDailyAbility(keineAhnung(abilities.value, excluded))];
-	const yesterdaySolution = computed(() => yesterdayAbility(keineAhnung(abilities.value, excluded)));
-
-	function keineAhnung(toFilter, excluded) {
-		let newObj = {...toFilter}
-		excluded.forEach(ability => {
-			delete newObj[ability]
-		});
-		return newObj
-	}
+	const tableData = useState('table');
+	const solution = useState('solution')
 
 	const winning = ref(false);
 	function pretty(input) {
@@ -104,7 +85,7 @@
 	}
 
 	const getCellClass = (abilityName, property) => {
-		const solutionValue = solution[property] || null;
+		const solutionValue = solution.value[property] || null;
 
 		function singles(property) {
 			return property.split(", ").join("|").split("-").join("|").split("|");
@@ -131,11 +112,14 @@
 
 	const addAbilityToTable = (guess) => {
 		if (abilities.value[guess]) {
+
 			abilitiesExpand.value = false;
 			searchTerm.value = "";
+
 			const guessObj = abilities.value[guess];
 
-			if (guessObj == solution) {
+			if (JSON.stringify(guessObj) === JSON.stringify(solution.value)) {
+				
 				winning.value = true;
 				setTimeout(() => {
 					winning.value = false;

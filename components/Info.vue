@@ -5,7 +5,12 @@
 				{{ expanded ? "Close" : "read me" }}
 			</button>
 			<div v-if="expanded" class="overflow-hidden w-auto transition-all duration-300">
-				<ContentDoc path="/"/>
+				<p>
+					- added Wriothesley and Neuvillette <br>
+					- fixed the text you're reading right now <br>
+					- fixed Nahida Skill Hold wrong ICD <br>
+					- working on endless mode
+				</p>
 			</div>
 		</div>
 	</div>
@@ -24,8 +29,4 @@
 			},
 		},
 	};
-</script>
-
-<script setup>
-
 </script>

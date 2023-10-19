@@ -2,7 +2,9 @@
 	<div class="app">
 		<title>Gaugedle</title>
 		<div>
-			<NuxtPage/>
+			<NuxtLayout>
+				<NuxtPage/>
+			</NuxtLayout>
 		</div>
 	</div>
 </template>

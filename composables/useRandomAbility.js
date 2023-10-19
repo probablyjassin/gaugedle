@@ -15,8 +15,13 @@ export default function useRandomAbility() {
 		return Object.keys(obj)[Math.floor(myrng() * Object.keys(obj).length)];
 	}
 
+	function generateRandomAbility(obj) {
+		return Object.keys(obj)[Math.floor(Math.random() * Object.keys(obj).length)];
+	}
+
 	return {
 		generateDailyAbility,
 		yesterdayAbility,
+		generateRandomAbility,
 	};
 }
