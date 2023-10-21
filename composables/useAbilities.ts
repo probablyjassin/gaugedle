@@ -475,6 +475,26 @@ export function useAbilities() {
       "Element": "Cryo",
       "Blunt": "Yes"
     },
+    /* "FurinaSkill": {
+      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Furina.png",
+      "CD": "20s",
+      "ICD": "None, Standard",
+      "Gauge": "1u",
+      "Diameter/Width": "1m, 5m, 7m, 10m",
+      "Shape": "Sphere",
+      "Element": "Hydro",
+      "Blunt": "No"
+    },
+    "FurinaBurst": {
+      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Furina.png",
+      "CD": "15s",
+      "ICD": "None",
+      "Gauge": "1u",
+      "Diameter/Width": "10m",
+      "Shape": "Sphere",
+      "Element": "Hydro",
+      "Blunt": "No"
+    }, */
     "GanyuSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Talent_Trail_of_the_Qilin.png",
       "CD": "10s",
@@ -1478,7 +1498,7 @@ export function useAbilities() {
     "XianglingBurst": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/2/29/Talent_Pyronado.png",
       "CD": "20s",
-      "ICD": "Standard, None",
+      "ICD": "None, Standard",
       "Gauge": "1u",
       "Diameter/Width": "5m, 6m",
       "Shape": "Cylinder",
