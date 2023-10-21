@@ -9,18 +9,23 @@
 			<input
 				tabindex="1"
 				v-model="searchTerm"
-				@input="abilitiesExpand = true"
-				@click="abilitiesExpand = true"
+				@input="expand()"
+				@click="expand()"
 				@keydown="navigate($event)"
 				placeholder="Guess an ability"
-				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md 
+				bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
 			<div
 				v-show="abilitiesExpand"
 				class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
 				<div class="options">
-					<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="addAbilityToTable(key)">
-						<div class="flex focus:bg-slate-300 hover:bg-slate-300 w-full" @keydown="navigate($event)" @keydown.enter.prevent="addAbilityToTable(key)" :tabindex="index + 2">
-							<img :src="ability.Image" alt="Ability Icon" class="icon w-12 h-12" />
+					<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="guess(key)">
+						<div
+							class="flex focus:bg-slate-300 hover:bg-slate-300 w-full"
+							@keydown="navigate($event)"
+							@keydown.enter.prevent="guess(key)"
+							:tabindex="index + 2">
+							<img :src="ability.Image" class="icon w-12 h-12" />
 							<span class="label ml-4">{{ pretty(key) }}</span>
 						</div>
 					</div>
@@ -30,7 +35,7 @@
 
 		<div class="overflow-x-auto mx-0 md:mx-28">
 			<div class="table-container overflow-y-auto max-h-[60vh]">
-				<table class="w-full align-middle bg-slate-50 ">
+				<table class="w-full align-middle bg-slate-50">
 					<thead>
 						<tr>
 							<th
@@ -66,75 +71,73 @@
 	const { abilities } = useAbilities();
 	const { navigate } = useNavigation();
 
-	const abilitiesExpand = useState('expanded')
-
+	const abilitiesExpand = useState("expanded");
 	const searchTerm = ref("");
+	const winning = ref(false);
 
 	const filteredOptions = computed(() => {
 		const searchQuery = searchTerm.value.toLowerCase();
 		if (searchQuery) {
-			const results = Object.entries(abilities.value).filter(([key, value]) => key.toLowerCase().includes(searchQuery));
-			return Object.fromEntries(results);
-		} else {
-			return abilities.value;
-		}
+			return Object.fromEntries(Object.entries(abilities.value).filter(([key]) => key.toLowerCase().includes(searchQuery)));
+		} else return abilities.value;
 	});
 
-	let properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];
+	const properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];
 	const tableData = useState("table");
 	const solution = useState("solution");
 
-	const winning = ref(false);
+	function expand() {
+		abilitiesExpand.value = true
+	}
+
 	function pretty(input) {
 		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
+	}
+
+	function singles(property) {
+		return property.split(/,|-/).map((value) => value.trim());
 	}
 
 	const getCellClass = (abilityName, property) => {
 		const solutionValue = solution.value[property] || null;
 
-		function singles(property) {
-			return property.split(", ").join("|").split("-").join("|").split("|");
-		}
-		if (solutionValue === abilities.value[abilityName][property]) {
-			return "bg-green-500";
-		} else {
+		if (solutionValue === abilities.value[abilityName][property]) return "bg-green-500";
+		else {
 			const guessedValues = singles(abilities.value[abilityName][property]);
-
 			const correctValues = singles(solutionValue);
 
-			let partialMatch = false;
 			for (let j = 0; j < guessedValues.length; j++) {
-				if (correctValues.includes(guessedValues[j])) {
-					partialMatch = true;
-					break;
-				}
+				if (correctValues.includes(guessedValues[j])) return "bg-yellow-400";
 			}
-			if (partialMatch) {
-				return "bg-yellow-400";
-			} else return "bg-red-500";
+			return "bg-red-500";
 		}
 	};
 
-	const addAbilityToTable = (guess) => {
-		document.querySelector('input').focus()
-		if (abilities.value[guess]) {
-			abilitiesExpand.value = false;
-			searchTerm.value = "";
+	function guess(guess) {
+		if (!abilities.value[guess]) return;
+		searchTerm.value = "";
+		abilitiesExpand.value = false;
+		document.querySelector("input").focus();
 
-			const guessObj = abilities.value[guess];
+		addToTable(guess);
+	}
 
-			if (JSON.stringify(guessObj) === JSON.stringify(solution.value)) {
-				winning.value = true;
-				setTimeout(() => {
-					winning.value = false;
-				}, 3000);
-			}
+	function addToTable(guess) {
+		let guessObj = abilities.value[guess];
 
-			const newAbility = { name: guess };
-			for (const property of properties) {
-				newAbility[property] = abilities.value[guess][property];
-			}
-			tableData.value.unshift(newAbility);
+		if (JSON.stringify(guessObj) === JSON.stringify(solution.value)) {
+			winning.value = true;
+			setTimeout(() => {
+				winning.value = false;
+			}, 3000);
 		}
-	};
+
+		let newGuess = {
+			name: guess,
+		};
+		for (const property of properties) {
+			newGuess[property] = abilities.value[guess][property];
+		}
+		tableData.value.unshift(newGuess);
+	}
 </script>
