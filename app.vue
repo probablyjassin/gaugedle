@@ -30,12 +30,9 @@
 
 <style scoped>
 	.app {
-		margin-top: 0;
 		min-height: 100vh;
-		height: 100vh;
 		background-image: url("~/assets/images/background2.webp");
 		background-size: cover;
 		background-repeat: none;
-		overflow: hidden;
 	}
 </style>

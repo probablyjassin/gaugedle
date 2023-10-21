@@ -29,33 +29,35 @@
 		</div>
 
 		<div class="overflow-x-auto mx-0 md:mx-28">
-			<table class="w-full align-middle bg-slate-50">
-				<thead>
-					<tr>
-						<th
-							v-for="(property, index) in ['Ability', ...properties]"
-							:key="index"
-							class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
-							{{ property }}
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="(item, itemIndex) in tableData" :key="itemIndex">
-						<td class="text-center p-2 border border-black md:text-base text-[8px]">
-							<span><img width="50" class="mx-auto" :src="abilities[item.name]['Image']" /></span
-							>{{ item.name.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
-						</td>
-						<td
-							class="text-center p-2 border border-black md:text-base text-xs"
-							v-for="(property, propIndex) in properties"
-							:key="propIndex"
-							:class="getCellClass(item.name, property)">
-							{{ item[property] }}
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="table-container overflow-y-auto max-h-[60vh]">
+				<table class="w-full align-middle bg-slate-50 ">
+					<thead>
+						<tr>
+							<th
+								v-for="(property, index) in ['Ability', ...properties]"
+								:key="index"
+								class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
+								{{ property }}
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item, itemIndex) in tableData" :key="itemIndex">
+							<td class="text-center p-2 border border-black md:text-base text-[8px]">
+								<span><img width="50" class="mx-auto" :src="abilities[item.name]['Image']" /></span
+								>{{ item.name.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
+							</td>
+							<td
+								class="text-center p-2 border border-black md:text-base text-xs"
+								v-for="(property, propIndex) in properties"
+								:key="propIndex"
+								:class="getCellClass(item.name, property)">
+								{{ item[property] }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </template>
