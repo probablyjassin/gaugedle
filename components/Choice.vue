@@ -9,8 +9,8 @@
 			<input
 				tabindex="1"
 				v-model="searchTerm"
-				@input="searchTerm = $event.target.value"
-				@focus="abilitiesExpand = true"
+				@input="abilitiesExpand = true"
+				@click="abilitiesExpand = true"
 				@keydown="navigate($event)"
 				placeholder="Guess an ability"
 				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
@@ -19,7 +19,7 @@
 				class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
 				<div class="options">
 					<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="addAbilityToTable(key)">
-						<div class="flex focus:bg-slate-300 w-full" @keydown="navigate($event)" @keydown.enter.prevent="addAbilityToTable(key)" :tabindex="index + 2">
+						<div class="flex focus:bg-slate-300 hover:bg-slate-300 w-full" @keydown="navigate($event)" @keydown.enter.prevent="addAbilityToTable(key)" :tabindex="index + 2">
 							<img :src="ability.Image" alt="Ability Icon" class="icon w-12 h-12" />
 							<span class="label ml-4">{{ pretty(key) }}</span>
 						</div>
@@ -116,6 +116,7 @@
 	};
 
 	const addAbilityToTable = (guess) => {
+		document.querySelector('input').focus()
 		if (abilities.value[guess]) {
 			abilitiesExpand.value = false;
 			searchTerm.value = "";
