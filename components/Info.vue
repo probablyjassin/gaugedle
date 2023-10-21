@@ -1,5 +1,5 @@
 <template>
-	<div class="absolute top-8 right-0 flex justify-center text-center mx-auto">
+	<div class="absolute top-1/5 left-0 lg:top-8 lg:left-auto lg:right-0 flex justify-center text-center mx-auto">
 		<div class="p-2 border rounded-lg bg-slate-200">
 			<button class="mt-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none" @click="toggleExpand">
 				{{ expanded ? "Close" : "read me" }}
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-let expanded = ref(false)
+let expanded = ref(true)
 function toggleExpand() {
 	expanded.value = !expanded.value
 }
