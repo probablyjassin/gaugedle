@@ -6,7 +6,7 @@
 			</button>
 			<div v-if="expanded" class="overflow-hidden w-auto text-left">
 				<div v-for="message in messages">
-					- {{ message }}
+					{{ message }}
 				</div>
 				<a href="https://probablyjassin.github.io/gaugedle/old" class="text-blue-400 underline">Old version of the Gaugedle</a>
 			</div>
