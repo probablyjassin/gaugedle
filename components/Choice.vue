@@ -1,10 +1,5 @@
 <template>
 	<div>
-		<Confetti v-if="winning" />
-		<div v-if="winning" class="mt-8 p-2 bg-white">
-			<p class="text-center text-6xl font-bold tracking-tighter text-green-600">You found the correct ability! Congratulations!</p>
-		</div>
-
 		<div class="custom-scrollable-selection flex justify-center mx-0 md:mx-28">
 			<input
 				tabindex="1"
@@ -13,8 +8,7 @@
 				@click="expand()"
 				@keydown="navigate($event)"
 				placeholder="Guess an ability"
-				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md 
-				bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
 			<div
 				v-show="abilitiesExpand"
 				class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
@@ -73,7 +67,10 @@
 
 	const abilitiesExpand = useState("expanded");
 	const searchTerm = ref("");
-	const winning = ref(false);
+	const winning = useState('winning');
+	const confetti = useState('confetti')
+	winning.value = false
+	confetti.value = false
 
 	const filteredOptions = computed(() => {
 		const searchQuery = searchTerm.value.toLowerCase();
@@ -87,7 +84,7 @@
 	const solution = useState("solution");
 
 	function expand() {
-		abilitiesExpand.value = true
+		abilitiesExpand.value = true;
 	}
 
 	function pretty(input) {
@@ -127,9 +124,10 @@
 
 		if (JSON.stringify(guessObj) === JSON.stringify(solution.value)) {
 			winning.value = true;
+			confetti.value = true
 			setTimeout(() => {
-				winning.value = false;
-			}, 3000);
+				confetti.value = false;
+			}, 3500);
 		}
 
 		let newGuess = {

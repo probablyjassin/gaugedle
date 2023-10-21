@@ -1,5 +1,5 @@
 <template>
-	<div class="my-3 text-center">
+	<div v-if="!winning" class="my-3 text-center">
 		<div class="ml-4 flex items-center justify-center space-x-1">
 			<div class="flex flex-col">
 				<p class="text-slate-200">Yesterdays' ability:</p>
@@ -7,7 +7,14 @@
 			</div>
 			<client-only><img :src="`${abilities[yesterdaySolution]['Image']}`" width="30" /></client-only>
 		</div>
-		
+	</div>
+	<div v-else class="my-3 text-center">
+		<div class="ml-4 flex items-center justify-center space-x-1">
+			<div class="flex flex-col">
+				<span class="text-green-400 text-xl">Congratulations, you found the correct ability!</span>
+				<NuxtLink to="/endless" class="px-2 mx-auto bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Endless mode</NuxtLink>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -15,6 +22,7 @@
 	const { abilities, excluded } = useAbilities();
 	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
 	const tableData = useState('table')
+	const winning = useState('winning')
 
 	const yesterdaySolution = computed(() => yesterdayAbility(keineAhnung(abilities.value, excluded)));
 
