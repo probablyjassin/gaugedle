@@ -235,6 +235,36 @@ export function useAbilities() {
       "Element": "Hydro",
       "Blunt": "No"
     },
+    /* "CharlotteSkillPress": {
+      "Image": "",
+      "CD": "12s",
+      "ICD": "Special, Standard",
+      "Gauge": "1u",
+      "Diameter/Width": "8m",
+      "Shape": "Box",
+      "Element": "Cryo",
+      "Blunt": "No"
+    },
+    "CharlotteSkillHold": {
+      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Charlotte.png",
+      "CD": "18s",
+      "ICD": "Special, Standard",
+      "Gauge": "1u",
+      "Diameter/Width": "???",
+      "Shape": "???",
+      "Element": "Cryo",
+      "Blunt": "No"
+    },
+    "CharlotteBurst": {
+      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Charlotte.png",
+      "CD": "20s",
+      "ICD": "Special, None",
+      "Gauge": "1u",
+      "Diameter/Width": "12m",
+      "Shape": "Cylinder",
+      "Element": "Cryo",
+      "Blunt": "No"
+    }, */
     "ChongyunSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/a/aa/Talent_Spirit_Blade_Chonghua%27s_Layered_Frost.png",
       "CD": "15s",
