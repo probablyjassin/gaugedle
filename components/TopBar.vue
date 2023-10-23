@@ -35,7 +35,7 @@ const playVideo = () => {
         }, 250);
         setTimeout(() => {
             iframe.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
-        }, 850);
+        }, 1000);
     }
     else {
         iframe.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
