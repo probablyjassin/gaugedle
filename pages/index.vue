@@ -24,13 +24,13 @@
 	const tableData = useState('table')
 	const winning = useState('winning')
 
-	const yesterdaySolution = computed(() => yesterdayAbility(keineAhnung(abilities.value, excluded)));
+	const yesterdaySolution = computed(() => yesterdayAbility(exclude(abilities.value, excluded)));
 
 	function pretty(input) {
 		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
 	}
 	const solution = useState('solution')
-	function keineAhnung(toFilter, excluded) {
+	function exclude(toFilter, excluded) {
 		let newObj = { ...toFilter };
 		excluded.forEach((ability) => {
 			delete newObj[ability];
@@ -38,5 +38,5 @@
 		return newObj;
 	}
 	tableData.value = []
-	solution.value = abilities.value[generateDailyAbility(keineAhnung(abilities.value, excluded))];
+	solution.value = abilities.value[generateDailyAbility(exclude(abilities.value, excluded))];
 </script>
