@@ -32,10 +32,10 @@
 			showFrame.value = true;
 			setTimeout(() => {
 				iframe = document.querySelector("iframe").contentWindow;
-			}, 250);
+			}, 350);
 			setTimeout(() => {
 				iframe.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
-			}, 1000);
+			}, 1200);
 		} else {
 			iframe.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
 		}
