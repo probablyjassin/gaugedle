@@ -33,13 +33,14 @@ jobs:
         with:
           node-version: "16"
 
-      - name: Cache dependencies
+      - name: Cache Node Modules
         uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-
+            ${{ runner.os }}-node-modules-
+        
 
       - name: Install dependencies
         run: npm install
