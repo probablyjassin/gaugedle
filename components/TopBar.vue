@@ -6,8 +6,8 @@
 			</nuxt-link>
 		</div>
 		<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo" />
-		<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo" />
-		<Player v-if="showFrame" />
+		<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo"/>
+		<iframe width="1" height="1" src="https://www.youtube.com/embed/pHYHyZS_Xzo?enablejsapi=1&version=3&loop=1&playlist=pHYHyZS_Xzo" frameborder="0" allowfullscreen class=""></iframe>
 	</div>
 </template>
 
@@ -25,20 +25,9 @@
 
 	const isPlaying = useState("music");
 	let iframe;
-	const showFrame = ref(false);
 
 	const playVideo = () => {
-		if (!showFrame.value) {
-			showFrame.value = true;
-			setTimeout(() => {
-				iframe = document.querySelector("iframe").contentWindow;
-			}, 350);
-			setTimeout(() => {
-				iframe.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
-			}, 1200);
-		} else {
-			iframe.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
-		}
+		iframe.postMessage('{"event":"command","func":"playVideo","args":""}', "*");
 		isPlaying.value = true;
 	};
 
@@ -46,6 +35,10 @@
 		iframe.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
 		isPlaying.value = false;
 	};
+
+	onMounted(() => {
+		iframe = document.querySelector("iframe").contentWindow;
+	});
 </script>
 
 <style scoped>
