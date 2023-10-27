@@ -877,7 +877,7 @@ export function useAbilities() {
     },
     "LynetteSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4e/Talent_Enigmatic_Feint.png",
-      "CD": "12",
+      "CD": "12s",
       "ICD": "None",
       "Gauge": "0u, 1u",
       "Diameter/Width": "1.8, 1.2",
