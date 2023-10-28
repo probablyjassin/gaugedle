@@ -9,12 +9,12 @@
 
 <script setup>
 	const { abilities, excluded } = useAbilities();
-	const { generateRandomAbility } = useRandomAbility();
+	const { generateRandomAbility } = useRandomAbility(exclude(abilities.value, excluded));
 
 	const solution = useState("solution");
 	const tableData = useState("table");
 
-	function keineAhnung(toFilter, excluded) {
+	function exclude(toFilter, excluded) {
 		let newObj = { ...toFilter };
 		excluded.forEach((ability) => {
 			delete newObj[ability];
@@ -24,7 +24,7 @@
 
 	function roll() {
 		tableData.value = [];
-		solution.value = abilities.value[generateRandomAbility(keineAhnung(abilities.value, excluded))];
+		solution.value = abilities.value[generateRandomAbility()];
 	}
 	roll();
 </script>
