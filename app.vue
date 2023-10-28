@@ -2,9 +2,15 @@
 	<div class="app" @click="clickAway($event)">
 		<title>Gaugedle</title>
 		<div>
-			<NuxtLayout>
-				<NuxtPage />
-			</NuxtLayout>
+			<Confetti v-if="confetti" />
+			<TopBar />
+			<Heading />
+			<Info />
+
+			<NuxtPage />
+
+			<Choice />
+			<Footing />
 		</div>
 	</div>
 </template>
@@ -20,15 +26,16 @@
 		],
 		script: [
 			{
-				src: "https://www.youtube.com/iframe_api"
-			}
+				src: "https://www.youtube.com/iframe_api",
+			},
 		],
 	});
 
+	const confetti = useState("confetti");
 	function clickAway($event) {
-		const expanded = useState('expanded')
-		if (!Object.values($event.target.classList).some(value => ['input', 'options', 'label'].includes(value))) {
-			expanded.value = false
+		const expanded = useState("expanded");
+		if (!Object.values($event.target.classList).some((value) => ["input", "options", "label"].includes(value))) {
+			expanded.value = false;
 		}
 	}
 </script>
