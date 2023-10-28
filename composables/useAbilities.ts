@@ -31,7 +31,7 @@ export function useAbilities() {
       "ICD": "Special",
       "Gauge": "1u",
       "Diameter/Width": "11m , 8m , 7m , 4.5m",
-      "Shape": " Box, Cylinder, Sphere",
+      "Shape": "Box, Cylinder, Sphere",
       "Element": "Dendro",
       "Blunt": "No"
     },
@@ -491,7 +491,7 @@ export function useAbilities() {
       "ICD": "Standard",
       "Gauge": "0u, 1u",
       "Diameter/Width": "3m, 5m, 7m",
-      "Shape": "Cylinder Box",
+      "Shape": "Cylinder, Box",
       "Element": "Cryo",
       "Blunt": "Yes, No"
     },
