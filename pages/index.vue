@@ -19,17 +19,11 @@
 </template>
 
 <script setup>
-	const { abilities, excluded } = useAbilities();
-	const { generateDailyAbility, yesterdayAbility } = useRandomAbility();
+	let { abilities, excluded } = useAbilities();
+	const { generateAbility, pastAbility } = useRandomAbility(exclude(abilities.value, excluded));
 	const tableData = useState('table')
 	const winning = useState('winning')
 
-	const yesterdaySolution = computed(() => yesterdayAbility(exclude(abilities.value, excluded)));
-
-	function pretty(input) {
-		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
-	}
-	const solution = useState('solution')
 	function exclude(toFilter, excluded) {
 		let newObj = { ...toFilter };
 		excluded.forEach((ability) => {
@@ -37,6 +31,13 @@
 		});
 		return newObj;
 	}
+
+	const yesterdaySolution = computed(() => pastAbility(1));
+
+	function pretty(input) {
+		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
+	}
+	const solution = useState('solution')
 	tableData.value = []
-	solution.value = abilities.value[generateDailyAbility(exclude(abilities.value, excluded))];
+	solution.value = abilities.value[generateAbility(0)];
 </script>
