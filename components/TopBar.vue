@@ -4,10 +4,15 @@
 			<nuxt-link :to="page.url" class="hover:bg-slate-800 p-1 rounded-xl">
 				{{ page.title }}
 			</nuxt-link>
+			<span v-if="page.new" class="absolute text-xs bg-red-600 rounded-lg py-0 px-1">
+				<p class="mb-1">new</p>
+			</span>
 		</div>
+		<div class="">
 		<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo" />
 		<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo"/>
 		<iframe width="1" height="1" src="https://www.youtube.com/embed/pHYHyZS_Xzo?enablejsapi=1&version=3&loop=1&playlist=pHYHyZS_Xzo" frameborder="0" allowfullscreen class=""></iframe>
+		</div>
 	</div>
 </template>
 
@@ -20,6 +25,11 @@
 		{
 			title: "Endless",
 			url: "/endless",
+		},
+		{
+			title: "Find",
+			url: "/find",
+			new: true,
 		},
 	];
 

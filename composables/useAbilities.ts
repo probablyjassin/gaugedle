@@ -880,7 +880,7 @@ export function useAbilities() {
       "CD": "12s",
       "ICD": "None",
       "Gauge": "0u, 1u",
-      "Diameter/Width": "1.8, 1.2",
+      "Diameter/Width": "1.8m, 1.2m",
       "Shape": "Box",
       "Element": "Anemo",
       "Blunt": "No"
@@ -970,7 +970,7 @@ export function useAbilities() {
       "CD": "6s",
       "ICD": "Special, None",
       "Gauge": "1.5u, 1u",
-      "Diameter/Width": "Big",
+      "Diameter/Width": "20m",
       "Shape": "Sphere",
       "Element": "Dendro",
       "Blunt": "No"

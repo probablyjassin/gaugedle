@@ -5,14 +5,15 @@
 			<button @click="roll" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Reset</button>
 		</div>
 	</div>
+	<Choice :solution="solution" :table="`endless`"/>
 </template>
 
 <script setup>
 	const { abilities, excluded } = useAbilities();
 	const { generateRandomAbility } = useRandomAbility(exclude(abilities.value, excluded));
 
-	const solution = useState("solution");
-	const tableData = useState("table");
+	const solution = useState("solution-endless", (() => ""));
+	const tableData = useState("table-endless");
 
 	function exclude(toFilter, excluded) {
 		let newObj = { ...toFilter };
@@ -26,5 +27,7 @@
 		tableData.value = [];
 		solution.value = abilities.value[generateRandomAbility()];
 	}
-	roll();
+	onMounted(() => {
+		if (!solution.value) roll()
+	})
 </script>

@@ -16,6 +16,7 @@
 			</div>
 		</div>
 	</div>
+	<Choice :solution="solution" :table="`index`"/>
 </template>
 
 <script setup>
@@ -38,6 +39,5 @@
 		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
 	}
 	const solution = useState('solution')
-	tableData.value = []
 	solution.value = abilities.value[generateAbility(0)];
 </script>

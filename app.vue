@@ -2,15 +2,9 @@
 	<div class="app" @click="clickAway($event)">
 		<title>Gaugedle</title>
 		<div>
-			<Confetti v-if="confetti" />
-			<TopBar />
-			<Heading />
-			<Info />
-
-			<NuxtPage />
-
-			<Choice />
-			<Footing />
+			<NuxtLayout>
+				<NuxtPage />
+			</NuxtLayout>
 		</div>
 	</div>
 </template>
@@ -31,7 +25,6 @@
 		],
 	});
 
-	const confetti = useState("confetti");
 	function clickAway($event) {
 		const expanded = useState("expanded");
 		if (!Object.values($event.target.classList).some((value) => ["input", "options", "label"].includes(value))) {

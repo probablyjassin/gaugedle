@@ -7,7 +7,7 @@
 				@input="expand()"
 				@click="expand()"
 				@keydown="navigate($event)"
-				placeholder="Guess an ability"
+				placeholder="Note that this mode is a work in progress and not fully finished yet"
 				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
 			<div
 				v-show="abilitiesExpand"
@@ -32,10 +32,7 @@
 				<table class="w-full align-middle bg-slate-50">
 					<thead>
 						<tr>
-							<th
-								v-for="(property, index) in ['Ability', ...properties]"
-								:key="index"
-								class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
+							<th v-for="(property, index) in ['Ability', property]" :key="index" class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
 								{{ property }}
 							</th>
 						</tr>
@@ -46,12 +43,8 @@
 								<span><img width="50" class="mx-auto" :src="abilities[item.name]['Image']" /></span
 								>{{ item.name.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
 							</td>
-							<td
-								class="text-center p-2 border border-black md:text-base text-xs"
-								v-for="(property, propIndex) in properties"
-								:key="propIndex"
-								:class="getCellClass(item.name, property)">
-								{{ item[property] }}
+							<td class="text-center p-2 border border-black md:text-base text-xs" :class="getCellClass(item.name, property)">
+								{{ abilities[item.name][property] }}
 							</td>
 						</tr>
 					</tbody>
@@ -65,24 +58,17 @@
 	const { abilities } = useAbilities();
 	const { navigate } = useNavigation();
 
+	const property = useState("property");
+	const propValue = useState("propValue");
+	const comparision = useState("comparision");
+
 	const abilitiesExpand = useState("expanded");
 	const searchTerm = ref("");
 	const winning = useState("winning");
 	const confetti = useState("confetti");
 	winning.value = false;
 	confetti.value = false;
-
-	const props = defineProps({
-		solution: {
-			type: String,
-			required: true,
-		},
-		table: {
-			type: String,
-			required: true,
-		},
-	});
-	const tableData = useState(`table-${props.table}`, (() => []))
+    let guesses = useState("guesses-find")
 
 	const filteredOptions = computed(() => {
 		const searchQuery = searchTerm.value.toLowerCase();
@@ -91,7 +77,7 @@
 		} else return abilities.value;
 	});
 
-	const properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];
+	const tableData = useState("table-find", () => []);
 
 	function expand() {
 		abilitiesExpand.value = true;
@@ -106,18 +92,19 @@
 	}
 
 	const getCellClass = (abilityName, property) => {
-		const solutionValue = props.solution[property] || null;
-
-		if (solutionValue === abilities.value[abilityName][property]) return "bg-green-500";
-		else {
-			const guessedValues = singles(abilities.value[abilityName][property]);
-			const correctValues = singles(solutionValue);
-
-			for (let j = 0; j < guessedValues.length; j++) {
-				if (correctValues.includes(guessedValues[j])) return "bg-yellow-400";
+		for (let prop of singles(abilities.value[abilityName][property])) {
+            
+			if (parseFloat(propValue.value) && comparision.value) {
+				if (eval(`${parseFloat(prop)} ${comparision.value} ${parseFloat(propValue.value)}`)) {
+                    
+					return "bg-green-500";
+				}
 			}
-			return "bg-red-500";
+			else if (propValue.value == prop) {
+				return "bg-green-500";
+			}
 		}
+		return "bg-red-500";
 	};
 
 	function guess(guess) {
@@ -127,25 +114,17 @@
 		document.querySelector("input").focus();
 
 		addToTable(guess);
+        if ((getCellClass(guess, property.value)).includes("green")) {
+            guesses.value.push("true")
+        }
+        else guesses.value.push("false")
 	}
 
 	function addToTable(guess) {
-		let guessObj = abilities.value[guess];
-
-		if (JSON.stringify(guessObj) === JSON.stringify(props.solution)) {
-			winning.value = true;
-			confetti.value = true;
-			setTimeout(() => {
-				confetti.value = false;
-			}, 3500);
-		}
-
-		let newGuess = {
+	    let newGuess = {
 			name: guess,
 		};
-		for (const property of properties) {
-			newGuess[property] = abilities.value[guess][property];
-		}
+		newGuess[property] = abilities.value[guess][property];
 		tableData.value.unshift(newGuess);
 	}
 </script>
