@@ -6,7 +6,7 @@ yesterday = today - (24 * 60 * 60 * 1000);
 
 function getDate(offset) {
 	let day = new Date(today);
-	day.setDate(day.getDate() - offset+1);
+	day.setDate(day.getDate() - offset);
 	return `${day.getDate().toString().padStart(2, "0")}-${(day.getMonth() + 1).toString().padStart(2, "0")}-${day.getFullYear()}`;
 }
 
