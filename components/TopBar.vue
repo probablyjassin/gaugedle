@@ -27,6 +27,11 @@
 			url: "/endless",
 		},
 		{
+			title: "Match",
+			url: "/match",
+			new: true,
+		},
+		{
 			title: "Find",
 			url: "/find",
 			new: true,
