@@ -98,11 +98,7 @@
 
 	const getCellClass = (abilityName, property) => {
 		for (let prop of singles(abilities.value[abilityName][property])) {
-			if (parseFloat(propValue.value) && comparision.value) {
-				if (eval(`${parseFloat(prop)} ${comparision.value} ${parseFloat(propValue.value)}`)) {
-					return "bg-green-500";
-				}
-			} else if (propValue.value == prop) {
+			if (propValue.value == prop) {
 				return "bg-green-500";
 			}
 		}
