@@ -22,7 +22,7 @@
 	});
 
 	const { abilities, excluded } = useAbilities();
-	const guessable = useState("abilities-match")
+	const guessable = useState("abilities-match", (() => abilities.value))
 
 	const ability = useState("ability-match")
 
@@ -77,7 +77,6 @@
 		if (!property.value || !propValue.value) {
 			rollProperty()
 		}
-		if (!guessable.value) guessable.value = abilities.value
     })
 
     function reset() {
