@@ -750,8 +750,8 @@ export function useAbilities() {
       "CD": "12s",
       "ICD": "None, Standard",
       "Gauge": "1u",
-      "Diameter/Width": "5.2m",
-      "Shape": "Cylinder",
+      "Diameter/Width": "5.2m, None",
+      "Shape": "Cylinder, Single",
       "Element": "Dendro",
       "Blunt": "No"
     },
