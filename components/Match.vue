@@ -98,7 +98,8 @@
 
 	const getCellClass = (abilityName, property) => {
 		for (let prop of singles(abilities.value[abilityName][property])) {
-			if (propValue.value == prop) {
+			console.log(propValue.value)
+			if (singles(propValue.value).some((value) => value == prop)) {
 				return "bg-green-500";
 			}
 		}
