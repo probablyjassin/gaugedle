@@ -61,25 +61,24 @@
 	});
 
 	function reset() {
+		rollProperty();
 		ability.value = generateRandomAbility();
 		const tableData = useState("table-match", () => []);
 		guesses.value = [];
 		tableData.value = [];
 		guessable.value = { ...abilities.value }
-		rollProperty();
 	}
 	function progressClass(i) {
 		return guesses.value[i] == "true" ? "bg-green-500" : guesses.value[i] ? "bg-red-500" : "bg-gray-500";
 	}
 	function rollProperty() {
-		delete guessable.value[ability.value];
 		property.value = Object.keys(properties)[Math.floor(Object.keys(properties).length * Math.random())];
-		propValue.value = abilities.value[ability.value][property.value]
-		console.log(ability.value, abilities.value[ability.value], [property.value], propValue.value)
+		propValue.value = pickRandom(properties[property.value]);
+		//console.log(property.value, propValue.value)
+		delete guessable.value[ability.value];
 	}
 	onMounted(() => {
 		if (!ability.value) ability.value = generateRandomAbility();
-
 		if (!property.value || !propValue.value) {
 			rollProperty();
 		}
