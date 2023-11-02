@@ -90,6 +90,10 @@
 				name: "robots",
 				content: "index, follow, noarchive",
 			},
+			{
+				name: "description",
+				content: "What ability might have the same Shape as Kaeya Burst? Test your knowledge of Genshin TC by matching abilities by their ICD, Gauge or Shape",
+			},
 		],
 	});
 </script>

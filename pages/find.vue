@@ -89,6 +89,10 @@
 				name: "robots",
 				content: "index, follow, noarchive",
 			},
+			{
+				name: "description",
+				content: "Can you find an ability that has a Cooldown of more than 20s, or one with Special ICD?",
+			},
 		],
 	});
 </script>

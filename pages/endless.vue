@@ -37,6 +37,10 @@
 				name: "robots",
 				content: "index, follow, noarchive",
 			},
+			{
+				name: "description",
+				content: "The endless Gaugedle with random abilities every time",
+			},
 		],
 	});
 </script>
