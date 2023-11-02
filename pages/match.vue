@@ -72,6 +72,7 @@
 		return guesses.value[i] == "true" ? "bg-green-500" : guesses.value[i] ? "bg-red-500" : "bg-gray-500";
 	}
 	function rollProperty() {
+//known issue
 		property.value = Object.keys(properties)[Math.floor(Object.keys(properties).length * Math.random())];
 		propValue.value = pickRandom(properties[property.value]);
 		//console.log(property.value, propValue.value)
