@@ -1,12 +1,12 @@
 <template>
-	<div class="absolute top-0 right-0 flex left-0 text-center text-white bg-slate-700 w-full p-1 space-x-10">
-		<div v-for="page in pages" :key="page.url" class="ml-10">
+	<div class="top-0 flex text-center text-white bg-slate-700 p-1 md:space-x-10 md:justify-start justify-evenly">
+		<div v-for="page in pages" :key="page.url" class="md:ml-10 ml-0">
 			<nuxt-link :to="page.url" class="hover:bg-slate-800 p-1 rounded-xl">
 				{{ page.title }}
+				<span v-if="page.new" class="absolute text-xs bg-red-600 rounded-lg py-0 md:px-1 p-0">
+					<p class="mb-1">new</p>
+				</span>
 			</nuxt-link>
-			<span v-if="page.new" class="absolute text-xs bg-red-600 rounded-lg py-0 px-1">
-				<p class="mb-1">new</p>
-			</span>
 		</div>
 		<div class="">
 		<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo" />

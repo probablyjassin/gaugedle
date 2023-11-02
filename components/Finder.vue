@@ -8,7 +8,7 @@
 				@click="expand()"
 				@keydown="navigate($event)"
 				placeholder="Note that this mode is a work in progress and not fully finished yet"
-				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+				class="input w-screen text-xs text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
 			<div
 				v-show="abilitiesExpand"
 				class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
