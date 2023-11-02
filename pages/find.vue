@@ -82,4 +82,13 @@
     function progressClass(i) {
         return guesses.value[i] == "true" ? 'bg-green-500' : guesses.value[i] ? 'bg-red-500' : 'bg-gray-500'
     }
+
+	useHead({
+		meta: [
+			{
+				name: "robots",
+				content: "index, follow, noarchive",
+			},
+		],
+	});
 </script>

@@ -83,4 +83,13 @@
 			rollProperty();
 		}
 	});
+
+	useHead({
+		meta: [
+			{
+				name: "robots",
+				content: "index, follow, noarchive",
+			},
+		],
+	});
 </script>
