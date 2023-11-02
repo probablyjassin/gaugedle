@@ -75,7 +75,6 @@
 		property.value = Object.keys(properties)[Math.floor(Object.keys(properties).length * Math.random())];
 		propValue.value = pickRandom(properties[property.value]);
 		propValue.value = abilities.value[ability.value][property.value]
-		console.log(propValue.value)
 		delete guessable.value[ability.value];
 	}
 	onMounted(() => {
