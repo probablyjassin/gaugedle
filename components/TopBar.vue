@@ -9,12 +9,28 @@
 			</span>
 		</div>
 		<div class="mt-1">
-			<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo" />
-			<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo"/>
-			<iframe width="1" height="1" src="https://www.youtube.com/embed/pHYHyZS_Xzo?enablejsapi=1&version=3&loop=1&playlist=pHYHyZS_Xzo" frameborder="0" allowfullscreen class=""></iframe>
+			<div class="group">
+				<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo"/>
+				<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo"/>
+					<span
+						class="group-hover:scale-100 bg-slate-300 text-black text-sm rounded p-1 absolute top-8 transform -translate-x-1/2 pointer-events-none scale-0">
+						Music
+					</span>
+			</div>
+			<iframe
+				width="1"
+				height="1"
+				src="https://www.youtube.com/embed/pHYHyZS_Xzo?enablejsapi=1&version=3&loop=1&playlist=pHYHyZS_Xzo"
+				frameborder="0"
+				allowfullscreen
+				class=""></iframe>
 		</div>
-		<nuxt-link to="/database" class="mt-1">
+		<nuxt-link to="/database" class="mt-1 relative group">
 			<faIcon icon="database" class="icon"></faIcon>
+			<span
+				class="group-hover:scale-100 group-hover:transition-opacity bg-slate-300 text-black text-sm rounded p-1 absolute top-6 left-1/2 transform -translate-x-1/2 pointer-events-none scale-0">
+				Database
+			</span>
 		</nuxt-link>
 	</div>
 </template>
