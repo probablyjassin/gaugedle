@@ -1,18 +1,21 @@
 <template>
 	<div class="top-0 flex text-center text-white bg-slate-700 p-1 md:space-x-10 md:justify-start justify-evenly">
-		<div v-for="page in pages" :key="page.url" class="md:ml-10 ml-0">
+		<div v-for="page in pages" :key="page.url" class="md:ml-10 ml-0 flex">
 			<nuxt-link :to="page.url" class="hover:bg-slate-800 p-1 rounded-xl">
 				{{ page.title }}
-				<span v-if="page.new" class="absolute text-xs bg-red-600 rounded-lg py-0 md:px-1 p-0">
-					<p class="mb-1">new</p>
-				</span>
 			</nuxt-link>
+			<span v-if="page.new" class="text-xs">
+				<p class="bg-red-600 pb-0.5 rounded-lg">new</p>
+			</span>
 		</div>
-		<div class="">
-		<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo" />
-		<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo"/>
-		<iframe width="1" height="1" src="https://www.youtube.com/embed/pHYHyZS_Xzo?enablejsapi=1&version=3&loop=1&playlist=pHYHyZS_Xzo" frameborder="0" allowfullscreen class=""></iframe>
+		<div class="mt-1">
+			<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo" />
+			<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo"/>
+			<iframe width="1" height="1" src="https://www.youtube.com/embed/pHYHyZS_Xzo?enablejsapi=1&version=3&loop=1&playlist=pHYHyZS_Xzo" frameborder="0" allowfullscreen class=""></iframe>
 		</div>
+		<nuxt-link to="/database" class="mt-1">
+			<faIcon icon="database" class="icon"></faIcon>
+		</nuxt-link>
 	</div>
 </template>
 
