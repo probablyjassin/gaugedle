@@ -21,7 +21,7 @@
 			<div class="min-h-[64vh] bg-slate-500 text-slate-100 bg-opacity-80 rounded-lg p-8 md:mt-0 mt-24" v-if="selected">
 				<div class="flex items-center space-x-2">
                     <p class="text-3xl">{{ pretty(selected.key) }}</p>
-                    <img :src="selected.obj.Image" class="icon w-12 h-12" />
+                    <img :src="selected.obj.Image" class="icon w-12 h-12" loading="lazy"/>
                 </div>
                 <div v-for="prop in Object.keys(selected.obj)" class="mb-3 items-center flex space-x-3">
                     <p class="text-xl">{{ `${prop}:` }}</p>

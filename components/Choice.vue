@@ -19,7 +19,7 @@
 							@keydown="navigate($event)"
 							@keydown.enter.prevent="guess(key)"
 							:tabindex="index + 2">
-							<img :src="ability.Image" class="icon w-12 h-12" />
+							<img :src="ability.Image" class="icon w-12 h-12" loading="lazy"/>
 							<span class="label ml-4">{{ pretty(key) }}</span>
 						</div>
 					</div>
