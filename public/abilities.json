@@ -1,9 +1,4 @@
-const abilities = ref({});
-const excluded = ['FOCALORSBurst', 'FOCALORSSkill']
-
-export function useAbilities() {
-
-  abilities.value = {
+{
     "AlbedoSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0e/Talent_Abiogenesis_Solar_Isotoma.png",
       "CD": "4s",
@@ -235,13 +230,13 @@ export function useAbilities() {
       "Element": "Hydro",
       "Blunt": "No"
     },
-    /* "CharlotteSkillPress": {
-      "Image": "",
+    "CharlotteSkillPress": {
+      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Charlotte.png",
       "CD": "12s",
       "ICD": "Special, Standard",
       "Gauge": "1u",
-      "Diameter/Width": "8m",
-      "Shape": "Box",
+      "Diameter/Width": "8m, None",
+      "Shape": "Box, Single",
       "Element": "Cryo",
       "Blunt": "No"
     },
@@ -259,12 +254,12 @@ export function useAbilities() {
       "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Charlotte.png",
       "CD": "20s",
       "ICD": "Special, None",
-      "Gauge": "1u",
+      "Gauge": "2u, 1u",
       "Diameter/Width": "12m",
       "Shape": "Cylinder",
       "Element": "Cryo",
       "Blunt": "No"
-    }, */
+    },
     "ChongyunSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/a/aa/Talent_Spirit_Blade_Chonghua%27s_Layered_Frost.png",
       "CD": "15s",
@@ -308,7 +303,7 @@ export function useAbilities() {
     "CynoSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e3/Talent_Secret_Rite_Chasmic_Soulfarer.png",
       "CD": "3s, 7.5s",
-      "ICD": "None, Special",
+      "ICD": "Special, None",
       "Gauge": "1u",
       "Diameter/Width": "7m",
       "Shape": "Cylinder",
@@ -505,10 +500,10 @@ export function useAbilities() {
       "Element": "Cryo",
       "Blunt": "Yes"
     },
-    /* "FurinaSkill": {
+    "FurinaSkill": {
       "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Furina.png",
       "CD": "20s",
-      "ICD": "None, Standard",
+      "ICD": "Special, None",
       "Gauge": "1u",
       "Diameter/Width": "1m, 5m, 7m, 10m",
       "Shape": "Sphere",
@@ -524,7 +519,7 @@ export function useAbilities() {
       "Shape": "Sphere",
       "Element": "Hydro",
       "Blunt": "No"
-    }, */
+    },
     "GanyuSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Talent_Trail_of_the_Qilin.png",
       "CD": "10s",
@@ -1776,9 +1771,3 @@ export function useAbilities() {
       "Blunt": "No"
     }
   }
-
-  return {
-    abilities,
-    excluded,
-  };
-}
