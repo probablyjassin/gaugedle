@@ -31,11 +31,11 @@
 			url: "/match",
 			new: true,
 		},
-		{
+		/* {
 			title: "Find",
 			url: "/find",
 			new: true,
-		},
+		}, */
 	];
 
 	const isPlaying = useState("music");

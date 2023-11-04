@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="overflow-x-auto mx-0 md:mx-28">
-			<div class="table-container overflow-y-auto max-h-[60vh]">
+			<div class="table-container overflow-y-auto max-h-[54vh]">
 				<table class="w-full align-middle bg-slate-50">
 					<thead>
 						<tr>

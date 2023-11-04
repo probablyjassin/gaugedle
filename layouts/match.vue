@@ -7,7 +7,6 @@
 
 		<slot></slot>
 
-		<Match />
 		<Footing />
 	</div>
 </template>

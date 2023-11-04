@@ -8,7 +8,7 @@
 				@click="expand()"
 				@keydown="navigate($event)"
 				placeholder="Guess an ability"
-				class="input w-screen text-sm text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
 			<div
 				v-show="abilitiesExpand"
 				class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="overflow-x-auto mx-0 md:mx-28">
-			<div class="table-container overflow-y-auto max-h-[60vh]">
+			<div class="table-container overflow-y-auto max-h-[54vh]">
 				<table class="w-full align-middle bg-slate-50">
 					<thead>
 						<tr>
@@ -61,10 +61,10 @@
 	const { generateRandomAbility } = useRandomAbility();
 	const { navigate } = useNavigation();
 
-	const ability = useState("ability-match");
+	const searchTerm = ref("");
+	const { search } = useSearch(guessable.value, "match")
 
 	const abilitiesExpand = useState("expanded");
-	const searchTerm = ref("");
 	const winning = useState("winning");
 	const confetti = useState("confetti");
 
@@ -76,10 +76,7 @@
 	const propValue = useState("propValue-match");
 
 	const filteredOptions = computed(() => {
-		const searchQuery = searchTerm.value.toLowerCase();
-		if (searchQuery) {
-			return Object.fromEntries(Object.entries(guessable.value).filter(([key]) => key.toLowerCase().includes(searchQuery)));
-		} else return guessable.value;
+		return search(searchTerm.value.toLowerCase());
 	});
 
 	const tableData = useState("table-match", () => []);
@@ -98,7 +95,6 @@
 
 	const getCellClass = (abilityName, property) => {
 		for (let prop of singles(abilities.value[abilityName][property])) {
-			console.log(propValue.value)
 			if (singles(propValue.value).some((value) => value == prop)) {
 				return "bg-green-500";
 			}

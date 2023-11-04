@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="overflow-x-auto mx-0 md:mx-28">
-			<div class="table-container overflow-y-auto max-h-[60vh]">
+			<div class="table-container overflow-y-auto max-h-[54vh]">
 				<table class="w-full align-middle bg-slate-50">
 					<thead>
 						<tr>
@@ -65,8 +65,10 @@
 	const { abilities } = useAbilities();
 	const { navigate } = useNavigation();
 
-	const abilitiesExpand = useState("expanded");
 	const searchTerm = ref("");
+	const { search } = useSearch(abilities.value)
+
+	const abilitiesExpand = useState("expanded");
 	const winning = useState("winning");
 	const confetti = useState("confetti");
 	winning.value = false;
@@ -74,21 +76,16 @@
 
 	const props = defineProps({
 		solution: {
-			type: String,
 			required: true,
 		},
 		table: {
-			type: String,
 			required: true,
 		},
 	});
 	const tableData = useState(`table-${props.table}`, (() => []))
 
 	const filteredOptions = computed(() => {
-		const searchQuery = searchTerm.value.toLowerCase();
-		if (searchQuery) {
-			return Object.fromEntries(Object.entries(abilities.value).filter(([key]) => key.toLowerCase().includes(searchQuery)));
-		} else return abilities.value;
+		return search(searchTerm.value.toLowerCase())
 	});
 
 	const properties = ["CD", "ICD", "Gauge", "Diameter/Width", "Shape", "Element", "Blunt"];

@@ -13,6 +13,8 @@
 	<div class="flex justify-center my-1 mx-0 md:mx-28">
 		<div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div>
 	</div>
+
+	<Match/>
 </template>
 
 <script setup>
@@ -75,6 +77,7 @@
 		property.value = Object.keys(properties)[Math.floor(Object.keys(properties).length * Math.random())];
 		propValue.value = pickRandom(properties[property.value]);
 		propValue.value = abilities.value[ability.value][property.value]
+		guessable.value = { ...abilities.value }
 		delete guessable.value[ability.value];
 	}
 	onMounted(() => {
