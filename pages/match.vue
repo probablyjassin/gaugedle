@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div class="flex justify-center my-1 mx-0 md:mx-28">
-		<div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div>
+		<!-- <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div> -->
 	</div>
 
 	<Match/>
@@ -31,6 +31,7 @@
 	const ability = useState("ability-match");
 	const property = useState("property-match", () => "");
 	const propValue = useState("propValue-match", () => "");
+	const confetti = useState("confetti")
 
 	function exclude(toFilter, excluded) {
 		let newObj = { ...toFilter };
@@ -84,6 +85,14 @@
 		if (!ability.value) ability.value = generateRandomAbility();
 		if (!property.value || !propValue.value) {
 			rollProperty();
+		}
+	});
+
+	watch(confetti, (newValue, oldValue) => {
+		if (newValue == true) {
+			setTimeout(() => {
+				reset()
+			}, 2000);
 		}
 	});
 

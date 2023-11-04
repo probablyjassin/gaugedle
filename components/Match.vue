@@ -62,7 +62,7 @@
 	const { navigate } = useNavigation();
 
 	const searchTerm = ref("");
-	const { search } = useSearch(guessable.value, "match")
+	const { search } = useSearch(guessable.value, "match");
 
 	const abilitiesExpand = useState("expanded");
 	const winning = useState("winning");
@@ -102,6 +102,13 @@
 		return "bg-red-500";
 	};
 
+	function makeConfetti() {
+		confetti.value = true;
+		setTimeout(() => {
+			confetti.value = false;
+		}, 4000);
+	}
+
 	function guess(guess) {
 		if (!abilities.value[guess]) return;
 		searchTerm.value = "";
@@ -110,22 +117,20 @@
 
 		addToTable(guess);
 		if (getCellClass(guess, property.value).includes("green")) {
-			guesses.value.push("true");
-		} else guesses.value.push("false");
+			/* guesses.value.push("true"); */
+			makeConfetti()
+		} /* else guesses.value.push("false"); */
 		delete guessable.value[guess];
 
-		if (guesses.value.length == 5) {
-			const count = {}
+		/* if (guesses.value.length == 5) {
+			const count = {};
 			guesses.value.forEach((element) => {
 				count[element] = (count[element] || 0) + 1;
 			});
 			if (count["true"] > count["false"]) {
-				confetti.value = true
-				setTimeout(() => {
-					confetti.value = false
-				}, 4000);
+				makeConfetti();
 			}
-		}
+		} */
 	}
 
 	function addToTable(guess) {
