@@ -2,6 +2,11 @@
 	<div class="app" @click="clickAway($event)">
 		<title>Gaugedle</title>
 		<div>
+			<Confetti v-if="confetti" />
+
+			<TopBar />
+			<Info />
+
 			<NuxtLayout>
 				<NuxtPage />
 			</NuxtLayout>
@@ -66,6 +71,7 @@
 			expanded.value = false;
 		}
 	}
+	const confetti = useState("confetti");
 </script>
 
 <style scoped>

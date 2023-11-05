@@ -77,10 +77,11 @@
 <script setup>
 	const { abilities } = useAbilities();
 	const { generateAbility, pastAbility } = useRandomAbility();
-
+	const { pretty, singles } = useUtils();
+	
 	const { navigate } = useNavigation();
 	const { search } = useSearch(abilities.value);
-
+	
 	const solution = useState("solution-index");
 	solution.value = abilities.value[generateAbility(0)];
 	const yesterdaySolution = computed(() => pastAbility(1));
@@ -101,12 +102,6 @@
 		abilitiesExpand.value = true;
 	}
 
-	function pretty(input) {
-		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
-	}
-	function singles(property) {
-		return property.split(/,|-/).map((value) => value.trim());
-	}
 
 	function guess(guess) {
 		if (!abilities.value[guess]) return;

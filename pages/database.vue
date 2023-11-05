@@ -40,13 +40,15 @@
 	});
 
 	const { abilities } = useAbilities();
-	const searchTerm = ref("");
-	const { search } = useSearch(abilities.value);
-	const selected = ref();
 
+	const { search } = useSearch(abilities.value);
+	const searchTerm = ref("");
 	const filteredOptions = computed(() => {
 		return search(searchTerm.value.toLowerCase());
 	});
+
+	const selected = ref();
+
 	function pretty(input) {
 		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
 	}
