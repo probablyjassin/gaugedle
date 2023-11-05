@@ -2,7 +2,8 @@
 	<div class="flex md:flex-nowrap flex-wrap  space-x-4">
 		<div class="md:w-1/4 w-3/4 p-4">
 			
-			<input type="text" 
+			<input type="text"
+			v-model="searchTerm"
 			placeholder="Search"
 			class="mx-auto w-full py-1 text-center rounded-md bg-white border-gray-300 shadow-sm focus:ring" />
 
@@ -46,7 +47,7 @@
 	const filteredOptions = computed(() => {
 		return search(searchTerm.value.toLowerCase());
 	});
-
+	
 	const selected = ref();
 
 	function pretty(input) {
