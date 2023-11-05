@@ -4,6 +4,6 @@
 		<Heading :subtitle="`Ability Database`"/>
 		<slot></slot>
 
-		<Footing />
+		<Footing :scrollable="true"/>
 	</div>
 </template>
