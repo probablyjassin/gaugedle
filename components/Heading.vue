@@ -7,7 +7,7 @@
 					<h1 class="text-6xl ">The Genshin Gaugedle</h1>
 					<p v-if="props.subtitle" class="text-3xl underline">{{ props.subtitle }}</p>
 				</div>
-				<img src="~/assets/images/gauge.png" width="70" class="ml-4" />
+				<img src="~/assets/images/gauge.png" width="70" height="70" class="ml-4" />
 			</div>
 		</div>
 	</div>

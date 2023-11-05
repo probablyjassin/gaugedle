@@ -10,17 +10,16 @@
 		</div>
 		<div class="mt-1">
 			<div class="group">
-				<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo"/>
-				<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo"/>
-					<span
-						class="group-hover:scale-100 bg-slate-300 text-black text-sm rounded p-1 absolute top-8 transform -translate-x-1/2 pointer-events-none scale-0">
-						Music
-					</span>
+				<fa-icon :icon="['fas', 'wave-square']" class="icon wave-icon" v-if="isPlaying" @click="pauseVideo" />
+				<fa-icon :icon="['fab', 'itunes-note']" class="icon" v-else @click="playVideo" />
+				<span class="group-hover:scale-100 bg-slate-300 text-black text-sm rounded p-1 absolute top-8 transform -translate-x-1/2 pointer-events-none scale-0">
+					Music
+				</span>
 			</div>
 			<iframe
 				width="1"
 				height="1"
-				src="https://www.youtube.com/embed/pHYHyZS_Xzo?enablejsapi=1&version=3&loop=1&playlist=pHYHyZS_Xzo"
+				src="https://www.youtube-nocookie.com/embed/pHYHyZS_Xzo?enablejsapi=1&modestbranding=1&rel=0&version=3&loop=1&playlist=pHYHyZS_Xzo"
 				frameborder="0"
 				allowfullscreen
 				class=""></iframe>
