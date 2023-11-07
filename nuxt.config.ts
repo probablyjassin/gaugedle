@@ -4,9 +4,17 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   plugins: ['~/plugins/fontawesome.js'],
   ssr: false,
-  routeRules: {
+  generate: {
+    routes: [
+      '/',
+      '/endless',
+      '/match',
+      '/database',
+    ],
+  }
+  /* routeRules: {
     '/': { prerender: true },
     '/match': { prerender: true },
     '/endless': { prerender: true },
-  }
+  } */
 })
