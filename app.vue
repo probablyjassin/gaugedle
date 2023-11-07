@@ -2,7 +2,7 @@
 	<div class="app" @click="clickAway($event)">
 		<title>Gaugedle</title>
 		<div>
-			<Confetti v-if="!confetti" />
+			<Confetti v-if="confetti" />
 
 			<TopBar />
 			<Info />
