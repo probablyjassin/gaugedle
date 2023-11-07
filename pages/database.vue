@@ -1,5 +1,5 @@
 <template>
-	<div class="flex md:flex-nowrap flex-wrap  space-x-4">
+	<div class="flex md:flex-nowrap flex-wrap space-x-4">
 		<div class="md:w-1/4 w-3/4 p-4">
 			
 			<input type="text"
