@@ -55,7 +55,7 @@
 			},
 			{
 				name: "robots",
-				content: "index, follow, noarchive",
+				content: "index, follow",
 			},
 		],
 		script: [
