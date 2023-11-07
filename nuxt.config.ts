@@ -4,4 +4,9 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   plugins: ['~/plugins/fontawesome.js'],
   ssr: false,
+  routeRules: {
+    '/': { prerender: true },
+    '/match': { prerender: true },
+    '/endless': { prerender: true },
+  }
 })
