@@ -51,7 +51,7 @@
 			},
 			{
 				name: "keywords",
-				content: "Genshin, Theorycrafting, ICD, Gauge, Wordle, ICDle, gaygedle",
+				content: "Genshin, Theorycrafting, ICD, Gauge, ICDle",
 			},
 			{
 				name: "robots",
