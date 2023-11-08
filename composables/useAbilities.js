@@ -1,6 +1,6 @@
 const abilities = ref({});
 const excluded = ['FOCALORSBurst', 'FOCALORSSkill']
-const unreleased = ['FurinaSkill', 'FurinaBurst', 'CharlotteSkillPress', 'CharlotteSkillHold', 'CharlotteBurst']
+const unreleased = []
 
 export function useAbilities() {
 
