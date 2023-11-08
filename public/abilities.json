@@ -231,7 +231,7 @@
       "Blunt": "No"
     },
     "CharlotteSkillPress": {
-      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Charlotte.png",
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Talent_Framing_Freezing_Point_Composition.png",
       "CD": "12s",
       "ICD": "Special, Standard",
       "Gauge": "1u",
@@ -241,7 +241,7 @@
       "Blunt": "No"
     },
     "CharlotteSkillHold": {
-      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Charlotte.png",
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Talent_Framing_Freezing_Point_Composition.png",
       "CD": "18s",
       "ICD": "Special, Standard",
       "Gauge": "1u",
@@ -251,7 +251,7 @@
       "Blunt": "No"
     },
     "CharlotteBurst": {
-      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Charlotte.png",
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/8/89/Talent_Still_Photo_Comprehensive_Confirmation.png",
       "CD": "20s",
       "ICD": "Special, None",
       "Gauge": "2u, 1u",
@@ -501,7 +501,7 @@
       "Blunt": "Yes"
     },
     "FurinaSkill": {
-      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Furina.png",
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6f/Talent_Salon_Solitaire.png",
       "CD": "20s",
       "ICD": "Special, None",
       "Gauge": "1u",
@@ -511,7 +511,7 @@
       "Blunt": "No"
     },
     "FurinaBurst": {
-      "Image": "http://yuhengcup.top/images/Avatar/UI_AvatarIcon_Furina.png",
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/6/66/Talent_Let_the_People_Rejoice.png",
       "CD": "15s",
       "ICD": "None",
       "Gauge": "1u",
