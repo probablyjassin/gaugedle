@@ -29,7 +29,7 @@
 				name: "viewport",
 				content: "width=device-width, initial-scale=1",
 			},
-			{
+			/* {
 				name: "og:title",
 				content: "The Genshin Gaugedle",
 			},
@@ -56,7 +56,7 @@
 			{
 				name: "robots",
 				content: "index, follow",
-			},
+			}, */
 		],
 		script: [
 			{
