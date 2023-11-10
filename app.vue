@@ -1,16 +1,19 @@
 <template>
-	<div class="app" @click="clickAway($event)">
+	<div class="app flex flex-col min-h-screen" @click="clickAway($event)">
 		<title>Gaugedle</title>
-		<div>
+		<div class="flex-1">
 			<Confetti v-if="confetti" />
 
 			<TopBar />
 			<Info />
+			<Heading :subtitle="subtitle"/>
 
 			<NuxtLayout>
 				<NuxtPage />
 			</NuxtLayout>
+
 		</div>
+		<Footing />
 	</div>
 </template>
 
