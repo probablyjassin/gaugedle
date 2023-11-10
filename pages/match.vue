@@ -1,5 +1,5 @@
 <template>
-	<div class="my-1 text-center">
+	<div class="my-3 text-center">
 		<div class="ml-4 flex items-center justify-center space-x-4">
 			<div class="flex items-center justify-center text-slate-200 text-lg bg-slate-500 p-2 rounded-full space-x-2" v-if="abilities[ability]">
 				<p>
@@ -10,9 +10,9 @@
 			<button @click="reset" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Reset</button>
 		</div>
 	</div>
-	<div class="flex justify-center my-1 mx-0 md:mx-28">
-		<!-- <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div> -->
-	</div>
+	<!--<div class="flex justify-center my-1 mx-0 md:mx-28">
+		 <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div> 
+	</div> -->
 
 	<Match/>
 </template>
