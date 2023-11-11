@@ -6,7 +6,7 @@
 
 			<TopBar />
 			<Info />
-			<Heading :subtitle="subtitle"/>
+			<Heading/>
 
 			<NuxtLayout>
 				<NuxtPage />

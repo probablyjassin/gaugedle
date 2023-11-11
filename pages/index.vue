@@ -5,7 +5,7 @@
 				<p class="text-slate-200">Yesterdays' ability:</p>
 				<span class="text-green-400 text-xl">{{ pretty(yesterdaySolution) }}</span>
 			</div>
-			<client-only><img :src="`${abilities[yesterdaySolution]['Image']}`" width="40" /></client-only>
+			<client-only v-if="yesterdaySolution"><img :src="`${abilities[yesterdaySolution]['Image']}`" width="40" /></client-only>
 		</div>
 	</div>
 
