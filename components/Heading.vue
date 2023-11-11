@@ -17,7 +17,7 @@
 	const route = useRoute()
 	const subtitle = computed(() => {
 		if (!route.name) return ''
-		if (route.name == 'index') return 'Daily'
+		if (route.name == 'index') return ''
 		return route.name.charAt(0).toUpperCase() + route.name.slice(1)
 	})
 </script>

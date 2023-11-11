@@ -97,7 +97,7 @@
 		return search(searchTerm.value.toLowerCase());
 	});
 
-	const abilitiesExpand = useState("expanded");
+	const abilitiesExpand = useState("expanded", (() => false));
 	function expand() {
 		abilitiesExpand.value = true;
 	}

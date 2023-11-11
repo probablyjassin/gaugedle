@@ -69,7 +69,7 @@
 	});
 
 	function clickAway($event) {
-		const expanded = useState("expanded");
+		const expanded = useState("expanded", (() => false));
 		if (!Object.values($event.target.classList).some((value) => ["input", "options", "label"].includes(value))) {
 			expanded.value = false;
 		}
