@@ -143,7 +143,7 @@
 
 <script>
 	useHead({
-		title: "The Genshin Gaugedle"
+		title: "The Genshin Gaugedle",
 		meta: [
 			{
 				name: "description",
