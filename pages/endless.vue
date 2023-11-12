@@ -143,14 +143,18 @@
 
 <script>
 	useHead({
+		title: "The Genshin Gaugedle"
 		meta: [
 			{
-				name: "robots",
-				content: "index, follow, noarchive",
+				name: "description",
+				content: "A wordle but for Genshin Theorycrafting - Try guessing a characters' ability using information like it's cooldown, ICD, shape and more!",
 			},
 			{
-				name: "description",
-				content: "The endless Gaugedle with random abilities every time",
+				charset: "utf-8",
+			},
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
 			},
 		],
 	});
