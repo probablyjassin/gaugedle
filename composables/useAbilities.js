@@ -12,7 +12,7 @@ async function fetchAbilities() {
   });
 }
 
-fetchAbilities()
+await fetchAbilities()
 
 export function useAbilities() {
 
