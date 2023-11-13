@@ -150,7 +150,7 @@
 		meta: [
 			{
 				name: "description",
-				content: "A wordle but for Genshin Theorycrafting - Try guessing a characters' ability using information like it's cooldown, ICD, shape and more!",
+				content: "A wordle but for Genshin Theorycrafting: Try guessing a characters' ability using information like it's cooldown, ICD, shape and more!",
 			},
 			{
 				charset: "utf-8",
