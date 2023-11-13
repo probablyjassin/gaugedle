@@ -7,9 +7,7 @@ export default defineNuxtConfig({
   nitro: {
     esbuild: {
       options: {
-        supported: {
-          'top-level-await': true
-        }
+        target: 'esnext'
       }
     }
   }
