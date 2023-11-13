@@ -4,9 +4,11 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   plugins: ['~/plugins/fontawesome.js'],
   ssr: false,
-  vite: {
+  nitro: {
     esbuild: {
-      target: 'esnext'
+      options: {
+        target: 'esnext'
+      }
     }
-  },
+  }
 })
