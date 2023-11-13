@@ -14,7 +14,59 @@
 		 <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div> 
 	</div> -->
 
-	<Match/>
+	<div>
+		<div class="custom-scrollable-selection flex justify-center mx-0 md:mx-28">
+			<input
+				tabindex="1"
+				v-model="searchTerm"
+				@input="expand()"
+				@click="expand()"
+				@keydown="navigate($event)"
+				placeholder="Guess an ability"
+				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+			<div
+				v-show="abilitiesExpand"
+				class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
+				<div class="options">
+					<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="guess(key)">
+						<div
+							class="flex focus:bg-slate-300 hover:bg-slate-300 w-full"
+							@keydown="navigate($event)"
+							@keydown.enter.prevent="guess(key)"
+							:tabindex="index + 2">
+							<img :src="ability.Image" class="icon w-12 h-12" />
+							<span class="label ml-4">{{ pretty(key) }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="overflow-x-auto mx-0 md:mx-28">
+			<div class="table-container overflow-y-auto max-h-[54vh]">
+				<table class="w-full align-middle bg-slate-50">
+					<thead>
+						<tr>
+							<th v-for="(property, index) in ['Ability', property]" :key="index" class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
+								{{ property }}
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item, itemIndex) in tableData" :key="itemIndex">
+							<td class="text-center p-2 border border-black md:text-base text-[8px]">
+								<span><img width="50" class="mx-auto" :src="abilities[item.name]['Image']" /></span
+								>{{ item.name.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
+							</td>
+							<td class="text-center p-2 border border-black md:text-base text-xs" :class="getCellClass(item.name, property)">
+								{{ abilities[item.name][property] }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script setup>
@@ -22,29 +74,32 @@
 		layout: "match",
 	});
 
-	const { abilities, excluded } = useAbilities();
-	const { generateRandomAbility } = useRandomAbility(exclude(abilities.value, excluded));
+	const { abilities } = useAbilities();
+	const { generateRandomAbility } = useRandomAbility();
+	const { pretty, singles } = useUtils()
 
+	const tableData = useState("table-match", () => []);
 	let guesses = useState("guesses-match", () => []);
 	const guessable = useState("abilities-match", () => abilities.value);
 
 	const ability = useState("ability-match");
 	const property = useState("property-match", () => "");
 	const propValue = useState("propValue-match", () => "");
-	const confetti = useState("confetti")
 
-	function exclude(toFilter, excluded) {
-		let newObj = { ...toFilter };
-		excluded.forEach((ability) => {
-			delete newObj[ability];
-		});
-		return newObj;
-	}
+	const { navigate } = useNavigation();
+	const searchTerm = ref("");
+	const { search } = useSearch(guessable.value, "match");
+
+	const abilitiesExpand = useState("expanded", (() => false));
+
+	const winning = useState("winning", (() => false));
+	const confetti = useState("confetti", (() => false));
+
+	const filteredOptions = computed(() => {
+		return search(searchTerm.value.toLowerCase());
+	});
 	function pickRandom(arr) {
 		return arr[Math.floor(Math.random() * arr.length)];
-	}
-	function pretty(input) {
-		return input.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim();
 	}
 
 	const propNames = ["Shape", "Gauge", "ICD"];
@@ -95,6 +150,58 @@
 			}, 2000);
 		}
 	});
+
+
+	function expand() {
+		abilitiesExpand.value = true;
+	}
+	const getCellClass = (abilityName, property) => {
+		for (let prop of singles(abilities.value[abilityName][property])) {
+			if (singles(propValue.value).some((value) => value == prop)) {
+				return "bg-green-500";
+			}
+		}
+		return "bg-red-500";
+	};
+
+	function makeConfetti() {
+		confetti.value = true;
+		setTimeout(() => {
+			confetti.value = false;
+		}, 4000);
+	}
+
+	function guess(guess) {
+		if (!abilities.value[guess]) return;
+		searchTerm.value = "";
+		abilitiesExpand.value = false;
+		document.querySelector("input").focus();
+
+		addToTable(guess);
+		if (getCellClass(guess, property.value).includes("green")) {
+			/* guesses.value.push("true"); */
+			makeConfetti()
+		} /* else guesses.value.push("false"); */
+		delete guessable.value[guess];
+
+		/* if (guesses.value.length == 5) {
+			const count = {};
+			guesses.value.forEach((element) => {
+				count[element] = (count[element] || 0) + 1;
+			});
+			if (count["true"] > count["false"]) {
+				makeConfetti();
+			}
+		} */
+	}
+
+	function addToTable(guess) {
+		let newGuess = {
+			name: guess,
+		};
+		newGuess[property] = abilities.value[guess][property];
+		tableData.value.unshift(newGuess);
+	}
 
 	useHead({
 		meta: [
