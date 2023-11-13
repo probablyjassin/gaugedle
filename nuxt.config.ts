@@ -4,4 +4,13 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   plugins: ['~/plugins/fontawesome.js'],
   ssr: false,
+  nitro: {
+    esbuild: {
+      options: {
+        supported: {
+          'top-level-await': true
+        }
+      }
+    }
+  }
 })
