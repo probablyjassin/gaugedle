@@ -10,5 +10,10 @@ export default defineNuxtConfig({
         target: 'esnext'
       }
     }
+  },
+  vite: {
+    esbuild: {
+      target: 'esnext'
+    }
   }
 })
