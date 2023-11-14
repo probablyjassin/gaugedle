@@ -8,7 +8,6 @@
 
 <script setup>
 	function randPick(arr) {
-		console.log("hi");
 		return arr[Math.floor(Math.random() * arr.length)];
 	}
 	function randInt() {
