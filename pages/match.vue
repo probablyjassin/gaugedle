@@ -76,7 +76,7 @@
 
 	const { abilities } = useAbilities();
 	const { generateRandomAbility } = useRandomAbility();
-	const { pretty, singles } = useUtils()
+	const { pretty, singles } = useUtils();
 
 	const tableData = useState("table-match", () => []);
 	let guesses = useState("guesses-match", () => []);
@@ -90,10 +90,10 @@
 	const searchTerm = ref("");
 	const { search } = useSearch(guessable.value, "match");
 
-	const abilitiesExpand = useState("expanded", (() => false));
+	const abilitiesExpand = useState("expanded", () => false);
 
-	const winning = useState("winning", (() => false));
-	const confetti = useState("confetti", (() => false));
+	const winning = useState("winning", () => false);
+	const confetti = useState("confetti", () => false);
 
 	const filteredOptions = computed(() => {
 		return search(searchTerm.value.toLowerCase());
@@ -118,12 +118,28 @@
 		properties[name] = Array.from(properties[name]);
 	});
 
+	let counts = {};
+	for (let key of Object.keys(abilities.value)) {
+		for (let innerKey of Object.keys(abilities.value[key])) {
+			const value = abilities.value[key][innerKey];
+
+			if (!propNames.includes(innerKey)) continue
+			
+			if (!counts[value]) {
+				counts[value] = 0;
+			}
+
+			counts[value]++;
+		}
+	}
+	//console.log(counts);
+
 	function reset() {
 		ability.value = generateRandomAbility();
 		const tableData = useState("table-match", () => []);
 		guesses.value = [];
 		tableData.value = [];
-		guessable.value = { ...abilities.value }
+		guessable.value = { ...abilities.value };
 		rollProperty();
 	}
 	function progressClass(i) {
@@ -132,8 +148,8 @@
 	function rollProperty() {
 		property.value = Object.keys(properties)[Math.floor(Object.keys(properties).length * Math.random())];
 		propValue.value = pickRandom(properties[property.value]);
-		propValue.value = abilities.value[ability.value][property.value]
-		guessable.value = { ...abilities.value }
+		propValue.value = abilities.value[ability.value][property.value];
+		guessable.value = { ...abilities.value };
 		delete guessable.value[ability.value];
 	}
 	onMounted(() => {
@@ -146,11 +162,10 @@
 	watch(confetti, (newValue, oldValue) => {
 		if (newValue == true) {
 			setTimeout(() => {
-				reset()
+				reset();
 			}, 2000);
 		}
 	});
-
 
 	function expand() {
 		abilitiesExpand.value = true;
@@ -180,7 +195,7 @@
 		addToTable(guess);
 		if (getCellClass(guess, property.value).includes("green")) {
 			/* guesses.value.push("true"); */
-			makeConfetti()
+			makeConfetti();
 		} /* else guesses.value.push("false"); */
 		delete guessable.value[guess];
 
