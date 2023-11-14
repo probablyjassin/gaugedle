@@ -234,7 +234,6 @@
 			name: guess,
 		};
 		newGuess[property.value] = abilities.value[guess][property.value];
-		console.log(newGuess, abilities.value[newGuess.name]);
 		tableData.value.unshift(newGuess);
 	}
 
