@@ -132,7 +132,7 @@
 			counts[value]++;
 		}
 	}
-	//console.log(counts);
+	console.log(counts);
 
 	function reset() {
 		ability.value = generateRandomAbility();
@@ -146,6 +146,12 @@
 		return guesses.value[i] == "true" ? "bg-green-500" : guesses.value[i] ? "bg-red-500" : "bg-gray-500";
 	}
 	function rollProperty() {
+		/* console.log(ability.value)
+		let prop = pickRandom(propNames)
+		console.log(prop, abilities.value[ability.value][prop])
+		console.log(counts[abilities.value[ability.value][prop]])
+		console.log(pickRandom(propNames)) */
+
 		property.value = Object.keys(properties)[Math.floor(Object.keys(properties).length * Math.random())];
 		propValue.value = pickRandom(properties[property.value]);
 		propValue.value = abilities.value[ability.value][property.value];
@@ -153,7 +159,7 @@
 		delete guessable.value[ability.value];
 	}
 	onMounted(() => {
-		if (!ability.value) ability.value = generateRandomAbility();
+		ability.value ||= generateRandomAbility();
 		if (!property.value || !propValue.value) {
 			rollProperty();
 		}
