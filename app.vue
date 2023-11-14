@@ -6,8 +6,8 @@
 
 			<TopBar />
 			<Info />
-			<Heading/>
-				<NuxtPage />
+			<Heading />
+			<NuxtPage />
 		</div>
 		<Footing />
 	</div>
@@ -65,7 +65,7 @@
 	});
 
 	function clickAway($event) {
-		const expanded = useState("expanded", (() => false));
+		const expanded = useState("expanded", () => false);
 		if (!Object.values($event.target.classList).some((value) => ["input", "options", "label"].includes(value))) {
 			expanded.value = false;
 		}
@@ -79,5 +79,18 @@
 		background-image: url("~/assets/images/background2.webp");
 		background-size: cover;
 		background-repeat: none;
+		overflow-x: hidden;
+	}
+</style>
+
+<style>
+	.page-enter-active,
+	.page-leave-active {
+		transition: all 0.4s;
+	}
+	.page-enter-from,
+	.page-leave-to {
+		opacity: 0;
+		transform: translateX(100%)
 	}
 </style>

@@ -1,84 +1,90 @@
 <template>
-	<div class="my-3 text-center">
-		<div class="ml-4 flex items-center justify-center space-x-4">
-
-			<div class="flex-col space-y-2 text-white bg-slate-600 p-1 rounded-lg">
-				<div class="group">
-					<faIcon icon="question-circle" class="w-5 cursor-pointer" @Click="toast"/>
-						<div class="absolute -translate-x-32 -translate-y-16 scale-0 group-hover:scale-[1] bg-slate-600 p-1 rounded-lg shadow-2xl">
-							<p>Click to check the correct property</p>
+	<transition>
+		<div>
+			<div class="my-3 text-center">
+				<div class="ml-4 flex items-center justify-center space-x-4">
+					<div class="flex-col space-y-2 text-white bg-slate-600 p-1 rounded-lg">
+						<div class="group">
+							<faIcon icon="question-circle" class="w-5 cursor-pointer" @Click="toast" />
+							<div class="absolute -translate-x-32 -translate-y-16 scale-0 group-hover:scale-[1] bg-slate-600 p-1 rounded-lg shadow-2xl">
+								<p>Click to check the correct property</p>
+							</div>
 						</div>
+					</div>
+					<div class="flex items-center justify-center text-slate-200 text-lg bg-slate-500 p-2 rounded-full space-x-2" v-if="abilities[ability]">
+						<p>
+							Can you find an ability with the same <b class="text-green-500">{{ property }}</b> as <b class="text-green-500">{{ pretty(ability) }}</b> ?
+						</p>
+						<img :src="abilities[ability]['Image']" height="36" width="36" />
+					</div>
+					<button @click="reset" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Reset</button>
 				</div>
 			</div>
-			<div class="flex items-center justify-center text-slate-200 text-lg bg-slate-500 p-2 rounded-full space-x-2" v-if="abilities[ability]">
-				<p>
-					Can you find an ability with the same <b class="text-green-500">{{ property }}</b> as <b class="text-green-500">{{ pretty(ability) }}</b> ?
-				</p>
-				<img :src="abilities[ability]['Image']" height="36" width="36" />
-			</div>
-			<button @click="reset" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Reset</button>
-		</div>
-	</div>
 
-	<div v-if="hint" class="absolute bottom-0 -translate-y-8 transform left-1/2 -translate-x-1/2 bg-red-400 p-2 rounded-lg">{{ propValue }}</div>
+			<div v-if="hint" class="absolute bottom-0 -translate-y-8 transform left-1/2 -translate-x-1/2 bg-red-400 p-2 rounded-lg">{{ propValue }}</div>
 
-	<!--<div class="flex justify-center my-1 mx-0 md:mx-28">
-		 <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div> 
-	</div> -->
+			<!--<div class="flex justify-center my-1 mx-0 md:mx-28">
+				 <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div> 
+			</div> -->
 
-	<div>
-		<div class="custom-scrollable-selection flex justify-center mx-0 md:mx-28">
-			<input
-				tabindex="1"
-				v-model="searchTerm"
-				@input="expand()"
-				@click="expand()"
-				@keydown="navigate($event)"
-				placeholder="Guess an ability"
-				class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-			<div
-				v-show="abilitiesExpand"
-				class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
-				<div class="options">
-					<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="guess(key)">
-						<div
-							class="flex focus:bg-slate-300 hover:bg-slate-300 w-full"
-							@keydown="navigate($event)"
-							@keydown.enter.prevent="guess(key)"
-							:tabindex="index + 2">
-							<img :src="ability.Image" class="icon w-12 h-12" />
-							<span class="label ml-4">{{ pretty(key) }}</span>
+			<div>
+				<div class="custom-scrollable-selection flex justify-center mx-0 md:mx-28">
+					<input
+						tabindex="1"
+						v-model="searchTerm"
+						@input="expand()"
+						@click="expand()"
+						@keydown="navigate($event)"
+						placeholder="Guess an ability"
+						class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+					<div
+						v-show="abilitiesExpand"
+						class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
+						<div class="options">
+							<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="guess(key)">
+								<div
+									class="flex focus:bg-slate-300 hover:bg-slate-300 w-full"
+									@keydown="navigate($event)"
+									@keydown.enter.prevent="guess(key)"
+									:tabindex="index + 2">
+									<img :src="ability.Image" class="icon w-12 h-12" />
+									<span class="label ml-4">{{ pretty(key) }}</span>
+								</div>
+							</div>
 						</div>
+					</div>
+				</div>
+
+				<div class="overflow-x-auto mx-0 md:mx-28">
+					<div class="table-container overflow-y-auto max-h-[54vh]">
+						<table class="w-full align-middle bg-slate-50">
+							<thead>
+								<tr>
+									<th
+										v-for="(property, index) in ['Ability', property]"
+										:key="index"
+										class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
+										{{ property }}
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="(item, itemIndex) in tableData" :key="itemIndex">
+									<td class="text-center p-2 border border-black md:text-base text-[8px]">
+										<span><img v-if="abilities[item.name]" width="50" class="mx-auto" :src="abilities[item.name]['Image']" /></span
+										>{{ item.name.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
+									</td>
+									<td class="text-center p-2 border border-black md:text-base text-xs" :class="getCellClass(item.name, property)">
+										{{ abilities[item.name][property] }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="overflow-x-auto mx-0 md:mx-28">
-			<div class="table-container overflow-y-auto max-h-[54vh]">
-				<table class="w-full align-middle bg-slate-50">
-					<thead>
-						<tr>
-							<th v-for="(property, index) in ['Ability', property]" :key="index" class="border-black border py-2 -mx-8 bg-slate-400 md:text-base text-[10px]">
-								{{ property }}
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="(item, itemIndex) in tableData" :key="itemIndex">
-							<td class="text-center p-2 border border-black md:text-base text-[8px]">
-								<span><img width="50" class="mx-auto" :src="abilities[item.name]['Image']" /></span
-								>{{ item.name.replace(/([A-Z](?=[a-z\d])|\d+)/g, " $1").trim() }}
-							</td>
-							<td class="text-center p-2 border border-black md:text-base text-xs" :class="getCellClass(item.name, property)">
-								{{ abilities[item.name][property] }}
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+	</transition>
 </template>
 
 <script setup>
@@ -92,7 +98,7 @@
 
 	const tableData = useState("table-match", () => []);
 	let guesses = useState("guesses-match", () => []);
-	const guessable = useState("abilities-match", () => abilities.value);
+	const guessable = useState("abilities-match", () => structuredClone(toRaw(abilities.value)));
 
 	const ability = useState("ability-match");
 	const property = useState("property-match", () => "");
@@ -135,8 +141,8 @@
 		for (let innerKey of Object.keys(abilities.value[key])) {
 			const value = abilities.value[key][innerKey];
 
-			if (!propNames.includes(innerKey)) continue
-			
+			if (!propNames.includes(innerKey)) continue;
+
 			if (!counts[value]) {
 				counts[value] = 0;
 			}
@@ -146,11 +152,11 @@
 	}
 
 	function reset() {
-		hint.value = false
-		const tableData = useState("table-match", () => []);
+		hint.value = false;
+		
 		guesses.value = [];
 		tableData.value = [];
-		guessable.value = { ...abilities.value };
+		guessable.value = structuredClone(toRaw(abilities.value))
 		rollProp();
 	}
 	/* function progressClass(i) {
@@ -164,13 +170,14 @@
 		delete guessable.value[ability.value];
 	} */
 	function rollProp() {
-		ability.value = generateRandomAbility()
-		property.value = pickRandom(propNames)
-		if (counts[abilities.value[ability.value][property.value]] <= 1) rollProp()
-		propValue.value = abilities.value[ability.value][property.value]
+		ability.value = generateRandomAbility();
+		property.value = pickRandom(propNames);
+		if (counts[abilities.value[ability.value][property.value]] <= 1) rollProp();
+		propValue.value = abilities.value[ability.value][property.value];
 	}
 	onMounted(() => {
-		if (!property.value || !propValue.value ||!ability.value) {
+		ability.value ||= generateRandomAbility();
+		if (!property.value || !propValue.value) {
 			rollProp();
 		}
 	});
@@ -227,14 +234,15 @@
 			name: guess,
 		};
 		newGuess[property.value] = abilities.value[guess][property.value];
+		console.log(newGuess, abilities.value[newGuess.name]);
 		tableData.value.unshift(newGuess);
 	}
 
-	let hint = ref(false)
+	let hint = ref(false);
 	function toast() {
-		hint.value = true
+		hint.value = true;
 		setTimeout(() => {
-			hint.value = false
+			hint.value = false;
 		}, 2000);
 	}
 

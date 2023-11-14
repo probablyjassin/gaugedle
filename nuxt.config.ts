@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   plugins: ['~/plugins/fontawesome.js'],
   ssr: false,
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
   nitro: {
     esbuild: {
       options: {
