@@ -1,18 +1,22 @@
 <template>
-	<div class="my-1 text-center">
-		<div class="ml-4 flex items-center justify-center space-x-4">
-			<p class="text-slate-200 text-lg bg-slate-500 p-3 rounded-full">
-				Can you find an ability with a
-				<b class="text-green-500">{{ property }}</b> of
-				<b class="text-green-400">{{ comparision ? (comparision == ">" ? "greater than " : "less than ") : "" }}</b>
-				<b class="text-green-500">{{ propValue }}</b> ?
-			</p>
-			<button @click="reset" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Reset</button>
+	<transition>
+		<div>		
+			<div class="my-1 text-center">
+				<div class="ml-4 flex items-center justify-center space-x-4">
+					<p class="text-slate-200 text-lg bg-slate-500 p-3 rounded-full">
+						Can you find an ability with a
+						<b class="text-green-500">{{ property }}</b> of
+						<b class="text-green-400">{{ comparision ? (comparision == ">" ? "greater than " : "less than ") : "" }}</b>
+						<b class="text-green-500">{{ propValue }}</b> ?
+					</p>
+					<button @click="reset" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Reset</button>
+				</div>
+			</div>
+			<div class="flex justify-center my-1 mx-0 md:mx-28">
+				<div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i-1)"></div>
+			</div>
 		</div>
-	</div>
-    <div class="flex justify-center my-1 mx-0 md:mx-28">
-        <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i-1)"></div>
-    </div>
+	</transition>
 </template>
 
 <script setup>
