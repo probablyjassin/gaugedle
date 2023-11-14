@@ -1,6 +1,15 @@
 <template>
 	<div class="my-3 text-center">
 		<div class="ml-4 flex items-center justify-center space-x-4">
+
+			<div class="flex-col space-y-2 text-white bg-slate-600 p-1 rounded-lg">
+				<div class="group">
+					<faIcon icon="question-circle" class="w-5 cursor-pointer" @Click="toast"/>
+						<div class="absolute -translate-x-32 -translate-y-16 scale-0 group-hover:scale-[1] bg-slate-600 p-1 rounded-lg shadow-2xl">
+							<p>Click to check the correct property</p>
+						</div>
+				</div>
+			</div>
 			<div class="flex items-center justify-center text-slate-200 text-lg bg-slate-500 p-2 rounded-full space-x-2" v-if="abilities[ability]">
 				<p>
 					Can you find an ability with the same <b class="text-green-500">{{ property }}</b> as <b class="text-green-500">{{ pretty(ability) }}</b> ?
@@ -10,6 +19,9 @@
 			<button @click="reset" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Reset</button>
 		</div>
 	</div>
+
+	<div v-if="hint" class="absolute bottom-0 -translate-y-8 transform left-1/2 -translate-x-1/2 bg-red-400 p-2 rounded-lg">{{ propValue }}</div>
+
 	<!--<div class="flex justify-center my-1 mx-0 md:mx-28">
 		 <div v-for="i in 5" class="min-h-[12px] w-full border-gray-950 border rounded-sm" :class="progressClass(i - 1)"></div> 
 	</div> -->
@@ -132,36 +144,35 @@
 			counts[value]++;
 		}
 	}
-	console.log(counts);
 
 	function reset() {
-		ability.value = generateRandomAbility();
+		hint.value = false
 		const tableData = useState("table-match", () => []);
 		guesses.value = [];
 		tableData.value = [];
 		guessable.value = { ...abilities.value };
-		rollProperty();
+		rollProp();
 	}
-	function progressClass(i) {
+	/* function progressClass(i) {
 		return guesses.value[i] == "true" ? "bg-green-500" : guesses.value[i] ? "bg-red-500" : "bg-gray-500";
 	}
 	function rollProperty() {
-		/* console.log(ability.value)
-		let prop = pickRandom(propNames)
-		console.log(prop, abilities.value[ability.value][prop])
-		console.log(counts[abilities.value[ability.value][prop]])
-		console.log(pickRandom(propNames)) */
-
 		property.value = Object.keys(properties)[Math.floor(Object.keys(properties).length * Math.random())];
 		propValue.value = pickRandom(properties[property.value]);
 		propValue.value = abilities.value[ability.value][property.value];
 		guessable.value = { ...abilities.value };
 		delete guessable.value[ability.value];
+	} */
+	function rollProp() {
+		ability.value = generateRandomAbility()
+		property.value = pickRandom(propNames)
+		if (counts[abilities.value[ability.value][property.value]] <= 1) rollProp()
+		propValue.value = abilities.value[ability.value][property.value]
+		console.log(property.value, propValue.value)
 	}
 	onMounted(() => {
-		ability.value ||= generateRandomAbility();
-		if (!property.value || !propValue.value) {
-			rollProperty();
+		if (!property.value || !propValue.value ||!ability.value) {
+			rollProp();
 		}
 	});
 
@@ -177,11 +188,7 @@
 		abilitiesExpand.value = true;
 	}
 	const getCellClass = (abilityName, property) => {
-		for (let prop of singles(abilities.value[abilityName][property])) {
-			if (singles(propValue.value).some((value) => value == prop)) {
-				return "bg-green-500";
-			}
-		}
+		if (abilities.value[abilityName][property] == propValue.value) return "bg-green-500"
 		return "bg-red-500";
 	};
 
@@ -220,8 +227,17 @@
 		let newGuess = {
 			name: guess,
 		};
-		newGuess[property] = abilities.value[guess][property];
+		newGuess[property.value] = abilities.value[guess][property.value];
+		console.log(newGuess)
 		tableData.value.unshift(newGuess);
+	}
+
+	let hint = ref(false)
+	function toast() {
+		hint.value = true
+		setTimeout(() => {
+			hint.value = false
+		}, 2000);
 	}
 
 	useHead({
