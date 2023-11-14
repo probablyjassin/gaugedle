@@ -168,7 +168,6 @@
 		property.value = pickRandom(propNames)
 		if (counts[abilities.value[ability.value][property.value]] <= 1) rollProp()
 		propValue.value = abilities.value[ability.value][property.value]
-		console.log(property.value, propValue.value)
 	}
 	onMounted(() => {
 		if (!property.value || !propValue.value ||!ability.value) {
@@ -228,7 +227,6 @@
 			name: guess,
 		};
 		newGuess[property.value] = abilities.value[guess][property.value];
-		console.log(newGuess)
 		tableData.value.unshift(newGuess);
 	}
 

@@ -7,11 +7,7 @@
 			<TopBar />
 			<Info />
 			<Heading/>
-
-			<NuxtLayout>
 				<NuxtPage />
-			</NuxtLayout>
-
 		</div>
 		<Footing />
 	</div>
