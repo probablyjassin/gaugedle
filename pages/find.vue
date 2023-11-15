@@ -86,16 +86,31 @@
     function progressClass(i) {
         return guesses.value[i] == "true" ? 'bg-green-500' : guesses.value[i] ? 'bg-red-500' : 'bg-gray-500'
     }
+</script>
 
+
+<script>
 	useHead({
+		title: "The Genshin Gaugedle",
 		meta: [
 			{
-				name: "robots",
-				content: "index, follow, noarchive",
+				name: "description",
+				content: "A wordle but for Genshin Theorycrafting: Try guessing a characters' ability using information like it's cooldown, ICD, shape and more!",
 			},
 			{
-				name: "description",
-				content: "Can you find an ability that has a Cooldown of more than 20s, or one with Special ICD?",
+				charset: "utf-8",
+			},
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
+			},
+			{
+				name: "og:type",
+				content: "website",
+			},
+			{
+				name: "author",
+				content: "probablyjassin - Jässin Aouani",
 			},
 		],
 	});
