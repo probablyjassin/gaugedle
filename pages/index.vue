@@ -24,7 +24,7 @@
 				<input
 					tabindex="1"
 					v-model="searchTerm"
-					@input="expand()"
+					@input="input()"
 					@click="expand()"
 					@keydown="navigate($event)"
 					placeholder="Guess an ability"
@@ -106,6 +106,10 @@
 		abilitiesExpand.value = true;
 	}
 
+	function input() {
+		expand()
+		document.querySelector('.options-container').scrollTop = 0;
+	}
 
 	function guess(guess) {
 		if (!abilities.value[guess]) return;

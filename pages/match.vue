@@ -32,7 +32,7 @@
 					<input
 						tabindex="1"
 						v-model="searchTerm"
-						@input="expand()"
+						@input="input()"
 						@click="expand()"
 						@keydown="navigate($event)"
 						placeholder="Guess an ability"
@@ -192,6 +192,10 @@
 
 	function expand() {
 		abilitiesExpand.value = true;
+	}
+	function input() {
+		expand()
+		document.querySelector('.options-container').scrollTop = 0;
 	}
 	const getCellClass = (abilityName, property) => {
 		if (abilities.value[abilityName][property] == propValue.value) return "bg-green-500"
