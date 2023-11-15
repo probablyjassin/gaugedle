@@ -7,7 +7,7 @@
 						<div class="group">
 							<faIcon icon="question-circle" class="w-5 cursor-pointer" @Click="toast" />
 							<div class="absolute -translate-x-32 -translate-y-16 scale-0 group-hover:scale-[1] bg-slate-600 p-1 rounded-lg shadow-2xl">
-								<p>Click to check the correct property</p>
+								<p>(for bugfixing:) click to check the correct property</p>
 							</div>
 						</div>
 					</div>
