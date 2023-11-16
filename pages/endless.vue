@@ -144,30 +144,3 @@
 		tableData.value.unshift(newGuess);
 	}
 </script>
-
-<script>
-	useHead({
-		title: "The Genshin Gaugedle",
-		meta: [
-			{
-				name: "description",
-				content: "A wordle but for Genshin Theorycrafting: Try guessing a characters' ability using information like it's cooldown, ICD, shape and more!",
-			},
-			{
-				charset: "utf-8",
-			},
-			{
-				name: "viewport",
-				content: "width=device-width, initial-scale=1",
-			},
-			{
-				name: "og:type",
-				content: "website",
-			},
-			{
-				name: "author",
-				content: "probablyjassin - Jässin Aouani",
-			},
-		],
-	});
-</script>
