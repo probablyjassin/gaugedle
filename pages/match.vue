@@ -120,7 +120,7 @@
 		return arr[Math.floor(Math.random() * arr.length)];
 	}
 
-	const propNames = ["Shape", "Gauge", "ICD"];
+	const propNames = ["Shape", "Gauge", "ICD", "CD"];
 	//const ranged = ["Diameter/Width", "CD"]; // not yet implemented
 	const properties = {};
 	propNames.forEach((name) => {
@@ -153,7 +153,6 @@
 
 	function reset() {
 		hint.value = false;
-		
 		guesses.value = [];
 		tableData.value = [];
 		guessable.value = structuredClone(toRaw(abilities.value))
@@ -174,6 +173,7 @@
 		property.value = pickRandom(propNames);
 		if (counts[abilities.value[ability.value][property.value]] <= 1) rollProp();
 		propValue.value = abilities.value[ability.value][property.value];
+		delete guessable.value[ability.value]
 	}
 	onMounted(() => {
 		ability.value ||= generateRandomAbility();
