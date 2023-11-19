@@ -2,7 +2,7 @@
 	<transition>
 		<div>		
 			<div class="flex md:flex-nowrap flex-wrap space-x-4">
-				<div class="md:w-1/4 w-3/4 p-4">
+				<div class="md:w-1/4 w-3/4 p-3">
 					
 					<input type="text"
 					v-model="searchTerm"
