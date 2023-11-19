@@ -24,14 +24,14 @@
 		
 				<div class="md:w-3/4 w-full p-4">
 					<div class=" bg-slate-500 text-slate-100 bg-opacity-80 rounded-lg p-6" v-if="selected">
-						<div class="flex items-center space-x-2">
+						<div class="flex items-center">
 							<p class="text-3xl">{{ pretty(selected.key) }}</p>
 							<img :src="selected.obj.Image" class="icon w-12 h-12" loading="lazy" />
 						</div>
 						<div v-for="prop in Object.keys(selected.obj)" class="mb-3">
 							<a v-if="prop == `Image`" :href="selected.obj[prop]" class="text-blue-300 underline">Image Source</a>
-							<span v-else class="text-xl flex items-center space-x-2">
-								<p class="w-1/6 bg-slate-500 p-2 rounded-md">{{ `${prop}:` }}</p> 
+							<span v-else class="text-xl flex items-center space-x-1">
+								<p class=" bg-slate-600 p-2 rounded-md">{{ `${prop}:` }}</p> 
 								<p>{{ selected.obj[prop] }}</p>
 							</span>
 						</div>
