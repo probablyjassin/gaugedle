@@ -980,6 +980,26 @@
       "Element": "Dendro",
       "Blunt": "No"
     },
+    "NaviaSkill": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4e/Talent_Ceremonial_Crystalshot.png",
+      "CD": "9s",
+      "ICD": "None",
+      "Gauge": "0u, 1u",
+      "Diameter/Width": "6m, None",
+      "Shape": "Single, Sphere",
+      "Element": "Geo",
+      "Blunt": "Yes, No"
+    },
+    "NaviaBurst": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Talent_As_the_Sunlit_Sky's_Singing_Salute.png",
+      "CD": "15s",
+      "ICD": "None, Special",
+      "Gauge": "1u, 2u",
+      "Diameter/Width": "5m, 6m",
+      "Shape": "Box, Cylinder",
+      "Element": "Geo",
+      "Blunt": "Yes"
+    },
     "NeuvilletteSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0e/Talent_O_Tears%2C_I_Shall_Repay.png",
       "CD": "12s",
