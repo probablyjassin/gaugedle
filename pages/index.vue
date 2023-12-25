@@ -1,6 +1,6 @@
 <template>
 	<transition>
-		<div>		
+		<div>
 			<div v-if="!winning" class="my-3 text-center">
 				<div class="ml-4 flex items-center justify-center space-x-1">
 					<div class="flex flex-col">
@@ -10,7 +10,7 @@
 					<client-only v-if="yesterdaySolution"><img :src="`${abilities[yesterdaySolution]['Image']}`" width="40" /></client-only>
 				</div>
 			</div>
-		
+
 			<div v-else class="my-3 text-center">
 				<div class="ml-4 flex items-center justify-center space-x-1">
 					<div class="flex flex-col">
@@ -19,7 +19,7 @@
 					</div>
 				</div>
 			</div>
-		
+
 			<div class="custom-scrollable-selection flex justify-center mx-0 md:mx-28">
 				<input
 					tabindex="1"
@@ -29,12 +29,17 @@
 					@keydown="navigate($event)"
 					placeholder="Guess an ability"
 					class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+					<EleFilter></EleFilter>
 				<div
 					v-show="abilitiesExpand"
 					class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
 					<div class="options">
 						<div v-for="(ability, key, index) in filteredOptions" :key="key" class="selected-option option flex items-center m-4" @click="guess(key)">
-							<div class="flex focus:bg-slate-300 hover:bg-slate-300 w-full" @keydown="navigate($event)" @keydown.enter.prevent="guess(key)" :tabindex="index + 2">
+							<div
+								class="flex focus:bg-slate-300 hover:bg-slate-300 w-full"
+								@keydown="navigate($event)"
+								@keydown.enter.prevent="guess(key)"
+								:tabindex="index + 2">
 								<img :src="ability.Image" class="icon w-12 h-12" loading="lazy" />
 								<span class="label ml-4">{{ pretty(key) }}</span>
 							</div>
@@ -42,7 +47,7 @@
 					</div>
 				</div>
 			</div>
-		
+
 			<div class="overflow-x-auto mx-0 md:mx-28">
 				<div class="table-container overflow-y-auto max-h-[51.5vh]">
 					<table class="w-full align-middle bg-slate-50">
@@ -82,10 +87,10 @@
 	const { abilities } = useAbilities();
 	const { generateAbility, pastAbility } = useRandomAbility();
 	const { pretty, singles } = useUtils();
-	
+
 	const { navigate } = useNavigation();
 	const { search } = useSearch(abilities.value);
-	
+
 	const solution = useState("solution-index");
 	solution.value = abilities.value[generateAbility(0)];
 	const yesterdaySolution = computed(() => pastAbility(1));
@@ -96,19 +101,23 @@
 	const winning = useState("winning", () => false);
 	const confetti = useState("confetti", () => false);
 
+	const element = useState("filter-element", (() => false));
+
 	const searchTerm = ref("");
 	const filteredOptions = computed(() => {
-		return search(searchTerm.value.toLowerCase());
+		const result = search(searchTerm.value.toLowerCase());
+		if (!element.value) return result;
+		return Object.fromEntries(Object.entries(result).filter(([key, ability]) => ability["Element"] == element.value));
 	});
 
-	const abilitiesExpand = useState("expanded", (() => false));
+	const abilitiesExpand = useState("expanded", () => false);
 	function expand() {
 		abilitiesExpand.value = true;
 	}
 
 	function input() {
-		expand()
-		document.querySelector('.options-container').scrollTop = 0;
+		expand();
+		document.querySelector(".options-container").scrollTop = 0;
 	}
 
 	function guess(guess) {

@@ -17,7 +17,8 @@
 					@keydown="navigate($event)"
 					placeholder="Guess an ability"
 					class="input w-screen text-center mx-auto py-3 mt-1 block rounded-md bg-white border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-				<div
+					<EleFilter></EleFilter>
+					<div
 					v-show="abilitiesExpand"
 					class="options-container mt-10 max-h-80 overflow-y-auto overflow-x-hidden absolute bg-white rounded-lg shadow-md z-50 mx-auto">
 					<div class="options">
@@ -92,8 +93,13 @@
 
 	const { search } = useSearch(abilities.value);
 	const searchTerm = ref("");
+
+	const element = useState("filter-element", (() => false));
+
 	const filteredOptions = computed(() => {
-		return search(searchTerm.value.toLowerCase());
+		const result = search(searchTerm.value.toLowerCase());
+		if (!element.value) return result;
+		return Object.fromEntries(Object.entries(result).filter(([key, ability]) => ability["Element"] == element.value));
 	});
 
 	function expand() {
