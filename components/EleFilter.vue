@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-	const element = useState("filter-element", (() => []));
+	const element = useState("filter-element", (() => ["Hydro", "Pyro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"]));
     const activated = ref(false)
 
     function toggle() {

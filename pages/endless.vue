@@ -94,7 +94,7 @@
 	const { search } = useSearch(abilities.value);
 	const searchTerm = ref("");
 
-	const element = useState("filter-element", (() => false));
+	const element = useState("filter-element", (() => ["Hydro", "Pyro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"]));
 
 	const filteredOptions = computed(() => {
 		const result = search(searchTerm.value.toLowerCase());

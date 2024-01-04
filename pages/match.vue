@@ -114,7 +114,7 @@
 	const winning = useState("winning", () => false);
 	const confetti = useState("confetti", () => false);
 
-	const element = useState("filter-element", (() => []));
+	const element = useState("filter-element", (() => ["Hydro", "Pyro", "Electro", "Cryo", "Anemo", "Geo", "Dendro"]));
 	
 	const filteredOptions = computed(() => {
 		const result = search(searchTerm.value.toLowerCase());
