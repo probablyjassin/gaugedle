@@ -114,12 +114,12 @@
 	const winning = useState("winning", () => false);
 	const confetti = useState("confetti", () => false);
 
-	const element = useState("filter-element", (() => false));
+	const element = useState("filter-element", (() => []));
 	
 	const filteredOptions = computed(() => {
 		const result = search(searchTerm.value.toLowerCase());
-		if (!element.value) return result;
-		return Object.fromEntries(Object.entries(result).filter(([key, ability]) => ability["Element"] == element.value));
+		if (!element.value.length) return result;
+		return Object.fromEntries(Object.entries(result).filter(([key, ability]) => element.value.includes(ability["Element"])));
 	});
 
 	function pickRandom(arr) {
