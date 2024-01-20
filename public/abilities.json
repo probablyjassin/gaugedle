@@ -260,6 +260,36 @@
       "Element": "Cryo",
       "Blunt": "No"
     },
+    "ChevreuseSkillPress": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0b/Talent_Short-Range_Rapid_Interdiction_Fire.png",
+      "CD": "15s",
+      "ICD": "None, Standard",
+      "Gauge": "0u, 1u"	,
+      "Diameter/Width": "6m, 3m, 2m",
+      "Shape": "Box, Sphere",
+      "Element": "Pyro",
+      "Blunt": "Yes, No"
+    },
+    "ChevreuseSkillHold": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0b/Talent_Short-Range_Rapid_Interdiction_Fire.png",
+      "CD": "15s",
+      "ICD": "None",
+      "Gauge": "0u, 1u",
+      "Diameter/Width": "7m, 3m",
+      "Shape": "Box, Sphere",
+      "Element": "Pyro",
+      "Blunt": "Yes, No"
+    },
+    "ChevreuseBurst": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/b/be/Talent_Ring_of_Bursting_Grenades.png",
+      "CD": "15s",
+      "ICD": "None, Special",
+      "Gauge": "1u, 2u",
+      "Diameter/Width": "12m",
+      "Shape": "Cylinder",
+      "Element": "Pyro",
+      "Blunt": "Yes"
+    },
     "ChongyunSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/a/aa/Talent_Spirit_Blade_Chonghua%27s_Layered_Frost.png",
       "CD": "15s",
