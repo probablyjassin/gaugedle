@@ -550,6 +550,26 @@
       "Element": "Hydro",
       "Blunt": "No"
     },
+    "GamingSkill": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Talent_Bestial_Ascent.png",
+      "CD": "6s",
+      "ICD": "None",
+      "Gauge": "1u",
+      "Diameter/Width": "8m, 12m",
+      "Shape": "Cylinder",
+      "Element": "Pyro",
+      "Blunt": "Yes"
+    },
+    "GamingBurst": {
+      "Image": "https://static.wikia.nocookie.net/gensin-impact/images/1/15/Talent_Suanni's_Gilded_Dance.png",
+      "CD": "15s",
+      "ICD": "Standard",
+      "Gauge": "1u",
+      "Diameter/Width": "10m",
+      "Shape": "Cylinder",
+      "Element": "Pyro",
+      "Blunt": "No"
+    },
     "GanyuSkill": {
       "Image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Talent_Trail_of_the_Qilin.png",
       "CD": "10s",
